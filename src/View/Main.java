@@ -8,6 +8,7 @@ package View;
 
 import Class.CanvasController;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,7 +134,8 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addVertex(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVertex
-       
+        String name = JOptionPane.showInputDialog("Nombre de la ciudad");
+        this.canvas.setTempName(name);
     }//GEN-LAST:event_addVertex
 
     private void addArc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArc
