@@ -6,21 +6,34 @@
 
 package Grafo;
 
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.geom.Dimension2D;
+
+
 /**
  *
  * @author DanielR
  */
 public class Vertex {
     
+    private final Color  COLOR = Color.GREEN;
+    private final Dimension2D DIMENSIONS = new Dimension(40,40);
+    
+    private int x,y;
     private String name;
     private Vertex sigV;
     private Vertex antV;
     private Arc sigA;
     private boolean brand;
 
-    public Vertex(String name, boolean brand) {
+    public Vertex(String name, boolean brand,int x,int y) {
         this.name = name;
         this.brand = brand;
+         this.x = x;
+        this.y = y;
     }
 
     public boolean isBrand() {
@@ -29,6 +42,12 @@ public class Vertex {
 
     public void setBrand(boolean brand) {
         this.brand = brand;
+        }
+    
+    public void draw(Graphics2D g2d){
+        g2d.setColor(this.COLOR);
+        g2d.fillOval(this.x, this.y, (int) this.DIMENSIONS.getWidth(), (int) this.DIMENSIONS.getHeight());
+       
     }
 
     public String getName() {

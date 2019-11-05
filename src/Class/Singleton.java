@@ -32,4 +32,8 @@ public class Singleton {
             return instance;
     }
     
+    public GraphMethods getGraphMethods(){
+        return this.map;
+    }
+    
 }
