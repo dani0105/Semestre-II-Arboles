@@ -16,9 +16,19 @@ public class Vertex {
     private Vertex sigV;
     private Vertex antV;
     private Arc sigA;
+    private boolean brand;
 
-    public Vertex(String name) {
+    public Vertex(String name, boolean brand) {
         this.name = name;
+        this.brand = brand;
+    }
+
+    public boolean isBrand() {
+        return brand;
+    }
+
+    public void setBrand(boolean brand) {
+        this.brand = brand;
     }
 
     public String getName() {

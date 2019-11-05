@@ -21,7 +21,7 @@ public class Arc {
     private double time;
     private double maxVelocity;
 
-    public Arc(int weight, double heavyvehicles, double distance, double maxVelocity) {
+    public Arc(int weight, double heavyvehicles, double distance, double maxVelocity){
         this.weight = weight;
         this.heavyvehicles = heavyvehicles;
         this.distance = distance;
