@@ -19,7 +19,7 @@ public class Singleton {
     
     private HashMethods users;
     private GraphMethods map;
-    private TreeMethods ordrs;
+    private TreeMethods orders;
     
     private Singleton (){
         
@@ -35,5 +35,15 @@ public class Singleton {
     public GraphMethods getGraphMethods(){
         return this.map;
     }
+    
+    public TreeMethods getTreeMethods(){
+        return this.orders;
+    }
+
+    public HashMethods getUsers() {
+        return this.users;
+    }
+    
+    
     
 }

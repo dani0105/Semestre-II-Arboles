@@ -58,7 +58,7 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
     @Override
     public void mouseClicked(MouseEvent e) {
         if(!this.tempName.isEmpty()){
-            this.last = new Vertex(this.tempName,e.getX(),e.getY());
+            this.last = new Vertex(e.getX(),e.getY(),this.tempName,false);
             this.tempName = "";
             repaint();
         }

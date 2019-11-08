@@ -11,29 +11,18 @@ package Grafo;
  * @author DanielR
  */
 public class Arc {
-    
-    private int weight;
+
     private Arc sigA;
     private Arc antA;
     private Vertex destination;
     private double heavyvehicles;
     private double distance;
-    private double time;
     private double maxVelocity;
 
-    public Arc(int weight, double heavyvehicles, double distance, double maxVelocity){
-        this.weight = weight;
+    public Arc(double heavyvehicles, double distance, double maxVelocity){
         this.heavyvehicles = heavyvehicles;
         this.distance = distance;
         this.maxVelocity = maxVelocity;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
     }
 
     public Arc getSigA() {
@@ -75,15 +64,7 @@ public class Arc {
     public void setDistance(double distance) {
         this.distance = distance;
     }
-
-    public double getTime() {
-        return time;
-    }
-
-    public void setTime(double time) {
-        this.time = time;
-    }
-
+    
     public double getMaxVelocity() {
         return maxVelocity;
     }

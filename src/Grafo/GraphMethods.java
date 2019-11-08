@@ -6,8 +6,6 @@
 
 package Grafo;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author DanielR
@@ -20,9 +18,9 @@ public class GraphMethods {
     public Vertex origin;
     public double original = 0;
 
-    public boolean add(String name){
+    public boolean add(String name, int x , int y){
         if(search(name) == null){
-            Vertex newVer = new Vertex(name, false);
+            Vertex newVer = new Vertex(x, y, name, false);
             if(graph == null){
                 graph = newVer;
             }else{
@@ -34,24 +32,26 @@ public class GraphMethods {
         }
         return false;
     }
-    
-    public Vertex search(String name){
-        Vertex auxV = graph; 
-        while(auxV.getSigV() != null){
-            if(auxV.getName().equals(name)){
-                return auxV;
+
+    public Vertex search(String name) {
+        if (graph != null) {
+            Vertex auxV = graph;
+            while (auxV.getSigV() != null) {
+                if (auxV.getName().equals(name)) {
+                    return auxV;
+                }
+                auxV = auxV.getSigV();
             }
-            auxV = auxV.getSigV();
         }
         return null;
     }
-    
+
     public boolean add(String ori, String dest, int weight, double heavyvehicles, double distance, double maxVelocity){
         Vertex origin = search(ori);
         Vertex destination = search(dest);
         if((origin != null) && (destination != null)){
             if(search(origin, destination) == null){
-                Arc newArc = new Arc(weight, heavyvehicles, distance, maxVelocity);
+                Arc newArc = new Arc( heavyvehicles, distance, maxVelocity);
                 newArc.setDestination(destination);
                 if(origin.getSigA() == null){
                     origin.setSigA(newArc);
@@ -66,12 +66,12 @@ public class GraphMethods {
         }
         return false;
     }
-    
-    public Arc search(Vertex origin, Vertex destination){
-        if(origin.getSigA() != null){
+
+    public Arc search(Vertex origin, Vertex destination) {
+        if (graph != null && origin.getSigA() != null) {
             Arc aux = origin.getSigA();
-            while(aux.getSigA() != null){
-                if(aux.getDestination() == destination){
+            while (aux.getSigA() != null) {
+                if (aux.getDestination() == destination) {
                     return aux;
                 }
                 aux = aux.getSigA();
@@ -133,6 +133,27 @@ public class GraphMethods {
         }
     }
 
+    public boolean Modify(String vertex, String newName) {
+        Vertex auxV = search(vertex);
+        if (auxV != null) {
+            auxV.setName(newName);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean Modify(Vertex origin,Vertex destiny, double heavy, double maxVelocity, double distance){
+        Arc auxA = search(origin, destiny);
+        if(auxA != null){
+            auxA.setDestination(destiny);
+            auxA.setHeavyvehicles(heavy);
+            auxA.setMaxVelocity(maxVelocity);
+            auxA.setDistance(distance);
+            return true;
+        }
+        return false;
+    }
+
     public void depth(Vertex vertex) {
         if ((vertex == null) && (vertex.isBrand())) {
             return;
@@ -147,13 +168,23 @@ public class GraphMethods {
         }
     }
     
-    /*
-    public void amplitude() {
-
-    }
-
     
-
+    public void amplitude(Vertex vertex) {
+        if(vertex == null){
+            
+        }else{
+            Vertex aux = vertex;
+            while(aux != null){
+                Arc arc = aux.getSigA();
+                while(arc != null){
+                    
+                    arc = arc.getSigA();
+                }
+                aux = aux.getSigV();
+            }
+        }
+    }
+    /* 
     public void shortRouteByTime(Vertex origin, Vertex destiny, double vehicleweight) {
         Vertex min = null;
         double time = Double.MAX_VALUE;
@@ -165,6 +196,7 @@ public class GraphMethods {
                 auxA.getDestination().setBrand(true);
                 break;
             }
+           
             if (auxA.getTime() < time) {
                 if (vehicleweight < auxA.getHeavyvehicles()) {
                     auxA.getDestination().setBrand(true);
@@ -177,30 +209,29 @@ public class GraphMethods {
             }
             auxA = auxA.getSigA();
         }
-    }
 
-    public void shortRouteByDistance(Vertex verOri, Vertex verDest, double vehicleweight, double temp, Vertex antV, Arc sigA) {
-        verOri.setBrand(true);
-        //ArrayList<Arc> list = new ArrayList<>();
-        // Vertex auxV = verOri;
-        if (original != temp) {
-            
-
-        }
-        Arc auxA = sigA;
-        while (auxA != null) {
-            if (vehicleweight < auxA.getHeavyvehicles()) {
-                if (!auxA.getDestination().isBrand()) {
-                    temp += auxA.getDistance();
-                    shortRouteByDistance(verOri, verDest, vehicleweight, temp, verOri, auxA.getSigA());
-                }
-            } else {
-                auxA.getDestination().setBrand(true);
-                shortRouteByDistance(verOri, verDest, vehicleweight, temp, verOri, auxA.getSigA());
-            }
-            auxA = auxA.getSigA();
-        }
     }
 */
+    public void shortRouteByDistance(Vertex verOri, Vertex verDest, double vehicleweight, double temp, Arc sigA) {
+        if (verOri.isBrand() || sigA.getHeavyvehicles() > vehicleweight) {
+            return;
+        }
+        verOri.setBrand(true);
+        //ArrayList<Arc> list = new ArrayList<>();
+        //Vertex auxV = verOri;
+        Arc auxA =  verOri.getSigA();
+        while (auxA != null) {
+            if(auxA.getDestination() == verDest){
+            }
+            if (!auxA.getDestination().isBrand()) {
+                temp += auxA.getDistance();
+                auxA.getDestination().setBrand(true);
+                //shortRouteByDistance(verOri, verDest, vehicleweight, temp, auxA.getSigA());
+            }
+            auxA = auxA.getSigA();     
+        }
+    }
+
 
 }
+

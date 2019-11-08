@@ -29,13 +29,13 @@ public class Vertex {
     private Arc sigA;
     private boolean brand;
 
-    public Vertex(String name, boolean brand,int x,int y) {
+    public Vertex(int x, int y, String name, boolean brand) {
+        this.x = x;
+        this.y = y;
         this.name = name;
         this.brand = brand;
-         this.x = x;
-        this.y = y;
     }
-
+  
     public boolean isBrand() {
         return brand;
     }
