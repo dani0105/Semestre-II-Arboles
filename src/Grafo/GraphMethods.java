@@ -11,7 +11,7 @@ public class GraphMethods {
 
     public boolean add(String name,int x,int y){
         if(search(name) == null){
-            Vertex newVer = new Vertex(name, false, x, y);
+            Vertex newVer = new Vertex( x, y,name, false);
             if(graph == null){
                 graph = newVer;
             }else{
@@ -135,11 +135,11 @@ public class GraphMethods {
         return false;
     }
 
-    public boolean Modify(Vertex origin,Vertex destiny, double heavy, double maxVelocity, double distance){
+    public boolean Modify(Vertex origin,Vertex destiny, float heavy, float maxVelocity, float distance){
         Arc auxA = search(origin, destiny);
         if(auxA != null){
             auxA.setDestination(destiny);
-            auxA.setHeavyvehicles(heavy);
+            auxA.setMaxWeight(heavy);
             auxA.setMaxVelocity(maxVelocity);
             auxA.setDistance(distance);
             return true;
@@ -206,7 +206,7 @@ public class GraphMethods {
     }
 */
     public void shortRouteByDistance(Vertex verOri, Vertex verDest, double vehicleweight, double temp, Arc sigA) {
-        if (verOri.isBrand() || sigA.getHeavyvehicles() > vehicleweight) {
+        if (verOri.isBrand() || sigA.getMaxWeight()> vehicleweight) {
             return;
         }
         verOri.setBrand(true);
