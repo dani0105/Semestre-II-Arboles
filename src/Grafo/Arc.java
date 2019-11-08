@@ -6,36 +6,56 @@
 
 package Grafo;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Dimension2D;
+import java.time.LocalTime;
+import java.util.Date;
+
 /**
  *
  * @author DanielR
  */
 public class Arc {
     
-    private int weight;
+    private final Color  COLOR = Color.BLACK;
+    
     private Arc sigA;
     private Arc antA;
     private Vertex destination;
-    private double heavyvehicles;
-    private double distance;
-    private double time;
-    private double maxVelocity;
+    
+   
+    private float maxWeight;
+    private float distance;
+    private LocalTime time;
+    private float maxVelocity;
 
-    public Arc(int weight, double heavyvehicles, double distance, double maxVelocity){
-        this.weight = weight;
-        this.heavyvehicles = heavyvehicles;
+    public Arc(float maxWeight, float distance, float maxVelocity, LocalTime time){
+        this.maxWeight = maxWeight;
         this.distance = distance;
         this.maxVelocity = maxVelocity;
+        this.time = time;
     }
 
-    public int getWeight() {
-        return weight;
+    /**
+     * Draw line from origin vertex to destination vertex
+     * @param g2d Canvas graphics
+     * @param origin Origin vertex
+     */
+    public void draw(Graphics2D g2d, Vertex origin){
+        g2d.setColor(COLOR);
+        
+        Dimension2D dimension = origin.getDimension2D();
+        int width = (int) dimension.getWidth()/2;
+        int height = (int) dimension.getHeight()/2;
+        System.out.println("Origin X:"+origin.X()+" Y:"+origin.Y());
+        System.out.println("("+(origin.X()+width)+","+(origin.Y()+height)+")"+ " A ("+(this.destination.X()+width )+","+(this.destination.Y()+height)+")");
+        
+        System.out.println(this.destination.getName()+ "Cordenada Y:"+this.destination.Y());
+        g2d.drawLine(origin.X()+width, origin.Y()+height, this.destination.X()+width, this.destination.Y()+height);
+        
     }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
+    
     public Arc getSigA() {
         return sigA;
     }
@@ -60,35 +80,35 @@ public class Arc {
         this.destination = destination;
     }
 
-    public double getHeavyvehicles() {
-        return heavyvehicles;
+    public float getMaxWeight() {
+        return maxWeight;
     }
 
-    public void setHeavyvehicles(double heavyvehicles) {
-        this.heavyvehicles = heavyvehicles;
+    public void setMaxWeight(float maxWeight) {
+        this.maxWeight = maxWeight;
     }
 
-    public double getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(double distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
-    public double getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(double time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
-    public double getMaxVelocity() {
+    public float getMaxVelocity() {
         return maxVelocity;
     }
 
-    public void setMaxVelocity(double maxVelocity) {
+    public void setMaxVelocity(float maxVelocity) {
         this.maxVelocity = maxVelocity;
     }
     

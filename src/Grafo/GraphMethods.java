@@ -1,28 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Grafo;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
-
-/**
- *
- * @author DanielR
- */
+import java.util.Date;
 
 
 public class GraphMethods {
     
     public Vertex graph;
-    public Vertex origin;
-    public double original = 0;
 
-    public boolean add(String name){
+    public boolean add(String name,int x,int y){
         if(search(name) == null){
-            Vertex newVer = new Vertex(name, false);
+            Vertex newVer = new Vertex(name, false, x, y);
             if(graph == null){
                 graph = newVer;
             }else{
@@ -35,23 +24,27 @@ public class GraphMethods {
         return false;
     }
     
+    
     public Vertex search(String name){
-        Vertex auxV = graph; 
-        while(auxV.getSigV() != null){
-            if(auxV.getName().equals(name)){
-                return auxV;
+        if(this.graph == null)
+            return null;
+        
+        Vertex auxVertex = graph; 
+        while(auxVertex != null){
+            if(auxVertex.getName().equals(name)){
+                return auxVertex;
             }
-            auxV = auxV.getSigV();
+            auxVertex = auxVertex.getSigV();
         }
         return null;
     }
     
-    public boolean add(String ori, String dest, int weight, double heavyvehicles, double distance, double maxVelocity){
+    public boolean add(String ori, String dest, float heavyvehicles, float distance, float maxVelocity,LocalTime date){
         Vertex origin = search(ori);
         Vertex destination = search(dest);
         if((origin != null) && (destination != null)){
             if(search(origin, destination) == null){
-                Arc newArc = new Arc(weight, heavyvehicles, distance, maxVelocity);
+                Arc newArc = new Arc( heavyvehicles, distance, maxVelocity,date);
                 newArc.setDestination(destination);
                 if(origin.getSigA() == null){
                     origin.setSigA(newArc);

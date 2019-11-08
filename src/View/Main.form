@@ -90,12 +90,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAddUser">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Usuario"/>
+        <Property name="text" type="java.lang.String" value="Usuarios"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnAddOrder">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear Pedido"/>
+        <Property name="text" type="java.lang.String" value="Pedidos"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="canvasContainer">
