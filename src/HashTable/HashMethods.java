@@ -19,13 +19,27 @@ public class HashMethods {
     
     private User table[];
     
+    /**
+     * Constructor method
+     */
     public HashMethods(){
        this.table = new User[size];
     }
+    
+    /**
+     * generate new hash key
+     * @param number user id to generate key
+     * @return hash key.
+     */
     private int hash(int number){
         return (number & 0xfffffff)% this.size;
     }
     
+    /**
+     * Insert user in table
+     * @param user user to insert
+     * @return  TRUE if inserted or False if not inserted.
+     */
     public boolean put(User user){
         int key = this.hash(user.getId());
         
@@ -47,6 +61,31 @@ public class HashMethods {
         return true;
     } 
     
+    /**
+     * Search user by Id
+     * @param number id to search in list.
+     * @return Object User if is found or NULL if not found.
+     */
+    public User get(int number){
+        int key = this.hash(number);
+        
+        if(this.table[key] == null){
+            return null;
+        }
+        
+        User aux = this.table[key];
+        
+        for (;aux != null; aux = aux.Next()){
+            if(aux.getId() == number)
+                break;
+        }
+        
+        return aux;
+       
+    }
+    /**
+     * Print HashTable in console
+     */
     public void print(){
         for (int i = 0; i < this.table.length; i++) {
             System.out.print("Indice: "+i+"[");
@@ -58,6 +97,10 @@ public class HashMethods {
          
     }
     
+    /**
+     * Create a new Table model with all users.
+     * @return DefaulsTableModel with users to use in table component.
+     */
     public DefaultTableModel getModel(){
         DefaultTableModel model = new DefaultTableModel();
         for (int i = 0; i < this.table.length; i++) {

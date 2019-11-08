@@ -26,6 +26,7 @@ public class Singleton {
     
     private Singleton (){
       this.map = new GraphMethods();
+      this.users = new HashMethods();
       
       this.map.add("A", 100, 100);
       this.map.add("B", 200, 200);
@@ -34,13 +35,15 @@ public class Singleton {
       this.map.add("A", "B", 20, 40, 60, LocalTime.of(1,30,0));
       this.map.add("B", "C", 20, 40, 60, LocalTime.of(1,30,0));
       
-      this.users = new HashMethods();
+      
       this.users.put(new User(1, "Daniel", Licenses.B1));
       this.users.put(new User(14, "Andres", Licenses.B2));
       this.users.put(new User(3, "Juan", Licenses.B3));
       this.users.put(new User(4, "Juan", Licenses.B3));
       this.users.put(new User(5, "Juan", Licenses.B3));
       this.users.print();
+      
+     
     }
     
     public static Singleton getInstance(){
