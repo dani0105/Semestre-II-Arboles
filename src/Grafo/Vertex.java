@@ -56,11 +56,10 @@ public class Vertex {
         
         Arc aux = this.sigA;
         while(aux != null){
-            System.out.println("Dibujando Arco desde "+this.name+" a "+aux.getDestination().getName());
+            
             aux.draw(g2d, this);
             aux = aux.getSigA();
         }
-        System.out.println("Siguiente\n");
     }
 
     public String getName() {
@@ -116,7 +115,7 @@ public class Vertex {
      * @return 
      */
     public int Y(){
-        return this.x;
+        return this.y;
     }
     
     /**

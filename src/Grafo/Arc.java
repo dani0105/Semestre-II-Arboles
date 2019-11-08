@@ -48,10 +48,7 @@ public class Arc {
         Dimension2D dimension = origin.getDimension2D();
         int width = (int) dimension.getWidth()/2;
         int height = (int) dimension.getHeight()/2;
-        System.out.println("Origin X:"+origin.X()+" Y:"+origin.Y());
-        System.out.println("("+(origin.X()+width)+","+(origin.Y()+height)+")"+ " A ("+(this.destination.X()+width )+","+(this.destination.Y()+height)+")");
         
-        System.out.println(this.destination.getName()+ "Cordenada Y:"+this.destination.Y());
         g2d.drawLine(origin.X()+width, origin.Y()+height, this.destination.X()+width, this.destination.Y()+height);
         
     }

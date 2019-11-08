@@ -86,6 +86,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         btnAddUser.setText("Usuarios");
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openUserFrame(evt);
+            }
+        });
 
         btnAddOrder.setText("Pedidos");
 
@@ -142,9 +147,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_addVertex
 
     private void addArc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArc
-       ArcDialog dialog = new ArcDialog(null, true);
+       ArcDialog dialog = new ArcDialog(this, true);
        dialog.setVisible(true);
+       this.canvas.repaint();
     }//GEN-LAST:event_addArc
+
+    private void openUserFrame(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openUserFrame
+        UserFrame frame = new UserFrame();
+        frame.setVisible(true);
+    }//GEN-LAST:event_openUserFrame
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
