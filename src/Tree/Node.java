@@ -6,10 +6,84 @@
 
 package Tree;
 
+import Grafo.Vertex;
+import HashTable.User;
+
 /**
  *
  * @author DanielR
  */
 public class Node {
-    
+
+    private int id;
+    private double itemWeight;
+    private Node izq;
+    private Node der;
+    private User sigU;
+    private Vertex sender;
+    private Vertex receiver;
+
+    public Node(int id, double itemWeight, User sigU, Vertex sender, Vertex receiver) {
+        this.id = id;
+        this.itemWeight = itemWeight;
+        this.sigU = sigU;
+        this.sender = sender;
+        this.receiver = receiver;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getItemWeight() {
+        return itemWeight;
+    }
+
+    public void setItemWeight(double itemWeight) {
+        this.itemWeight = itemWeight;
+    }
+
+    public Node getIzq() {
+        return izq;
+    }
+
+    public void setIzq(Node izq) {
+        this.izq = izq;
+    }
+
+    public Node getDer() {
+        return der;
+    }
+
+    public void setDer(Node der) {
+        this.der = der;
+    }
+
+    public User getSigU() {
+        return sigU;
+    }
+
+    public void setSigU(User sigU) {
+        this.sigU = sigU;
+    }
+
+    public Vertex getSender() {
+        return sender;
+    }
+
+    public void setSender(Vertex sender) {
+        this.sender = sender;
+    }
+
+    public Vertex getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(Vertex receiver) {
+        this.receiver = receiver;
+    }
 }
