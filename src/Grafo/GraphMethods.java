@@ -3,30 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Grafo;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author DanielR
  */
-
-
 public class GraphMethods {
-    
-    public Vertex graph;
-    public Vertex origin;
-    public double original = 0;
 
-    public boolean add(String name, int x , int y){
-        if(search(name) == null){
+    public Vertex graph;
+
+
+
+    public boolean add(String name, int x, int y) {
+        if (search(name) == null) {
             Vertex newVer = new Vertex(x, y, name, false);
-            if(graph == null){
+            if (graph == null) {
                 graph = newVer;
-            }else{
-              newVer.setSigV(graph);
-              graph.setAntV(newVer);
-              graph = newVer;
+            } else {
+                newVer.setSigV(graph);
+                graph.setAntV(newVer);
+                graph = newVer;
             }
             return true;
         }
@@ -46,27 +45,40 @@ public class GraphMethods {
         return null;
     }
 
-    public boolean add(String ori, String dest, int weight, double heavyvehicles, double distance, double maxVelocity){
-        Vertex origin = search(ori);
-        Vertex destination = search(dest);
-        if((origin != null) && (destination != null)){
-            if(search(origin, destination) == null){
-                Arc newArc = new Arc( heavyvehicles, distance, maxVelocity);
-                newArc.setDestination(destination);
-                if(origin.getSigA() == null){
-                    origin.setSigA(newArc);
-                }else{
-                    newArc.setSigA(origin.getSigA());
-                    origin.getSigA().setAntA(newArc);
-                    origin.setSigA(newArc);
+    public boolean add(String ori, String dest, int weight, double heavyvehicles, double distance, double maxVelocity) {
+        if (ori.equals(dest)) {
+            return false;
+        } else {
+            Vertex origin = search(ori);
+            Vertex destination = search(dest);
+            if ((origin != null) && (destination != null)) {
+                if (search(origin, destination) == null) {
+                    Arc newArc = new Arc(heavyvehicles, distance, maxVelocity);
+                    newArc.setDestination(destination);
+                    if (origin.getSigA() == null) {
+                        origin.setSigA(newArc);
+                    } else {
+                        newArc.setSigA(origin.getSigA());
+                        origin.getSigA().setAntA(newArc);
+                        origin.setSigA(newArc);
+                    }
+                    Arc reverse = new Arc(heavyvehicles, distance, maxVelocity);
+                    reverse.setDestination(origin);
+                    if (destination.getSigA() == null) {
+                        destination.setSigA(reverse);
+                    } else {
+                        reverse.setSigA(destination.getSigA());
+                        destination.getSigA().setAntA(reverse);
+                        destination.setSigA(reverse);
+                    }
+                    return true;
                 }
-                 return true;      
+                return false;
             }
             return false;
         }
-        return false;
     }
-
+    
     public Arc search(Vertex origin, Vertex destination) {
         if (graph != null && origin.getSigA() != null) {
             Arc aux = origin.getSigA();
@@ -86,16 +98,28 @@ public class GraphMethods {
         } else {
             Arc auxArc = search(origin, destination);
             if (auxArc != null) {
+                Arc auxA = auxArc;
                 if (auxArc == origin.getSigA()) {
                     origin.setSigA(auxArc.getSigA());
                     if (origin.getSigA() != null) {
                         auxArc.getSigA().setAntA(null);
                     }
+                } else {
+                    auxArc.getAntA().setSigA(auxArc.getSigA());
+                    if (auxArc.getSigA() != null) {
+                        auxArc.getSigA().setAntA(auxArc.getAntA());
+                    }
+                }
+                if (auxA == destination.getSigA()) {
+                    destination.setSigA(auxA.getSigA());
+                    if (destination.getSigA() != null) {
+                        auxA.getSigA().setAntA(null);
+                    }
                     return true;
                 }
-                auxArc.getAntA().setSigA(auxArc.getSigA());
-                if (auxArc.getSigA() != null) {
-                    auxArc.getSigA().setAntA(auxArc.getAntA());
+                auxA.getAntA().setSigA(auxA.getSigA());
+                if(auxA.getSigA() != null){
+                    auxA.getSigA().setAntA(auxA.getAntA());
                 }
                 return true;
             }
@@ -145,10 +169,13 @@ public class GraphMethods {
     public boolean Modify(Vertex origin,Vertex destiny, double heavy, double maxVelocity, double distance){
         Arc auxA = search(origin, destiny);
         if(auxA != null){
-            auxA.setDestination(destiny);
+            Arc aux = search(destiny, origin);
             auxA.setHeavyvehicles(heavy);
             auxA.setMaxVelocity(maxVelocity);
             auxA.setDistance(distance);
+            aux.setHeavyvehicles(heavy);
+            aux.setDistance(distance);
+            aux.setMaxVelocity(maxVelocity);
             return true;
         }
         return false;
@@ -184,6 +211,8 @@ public class GraphMethods {
             }
         }
     }
+    
+   
     /* 
     public void shortRouteByTime(Vertex origin, Vertex destiny, double vehicleweight) {
         Vertex min = null;
@@ -212,26 +241,22 @@ public class GraphMethods {
 
     }
 */
-    public void shortRouteByDistance(Vertex verOri, Vertex verDest, double vehicleweight, double temp, Arc sigA) {
-        if (verOri.isBrand() || sigA.getHeavyvehicles() > vehicleweight) {
+   ArrayList<Vertex> saveVertex = new ArrayList<>();
+    public void shortRouteByDistance(Vertex Ori, Vertex Dest, double vehicleweight) {
+        if (Dest.isBrand()) {
             return;
-        }
-        verOri.setBrand(true);
-        //ArrayList<Arc> list = new ArrayList<>();
-        //Vertex auxV = verOri;
-        Arc auxA =  verOri.getSigA();
-        while (auxA != null) {
-            if(auxA.getDestination() == verDest){
+        } else {
+            if (Ori.getSigA() != null) {
+                Arc arc = Ori.getSigA();
+                while (arc != null) {
+                    if (arc.getHeavyvehicles() < vehicleweight) {
+                       
+                    }
+                    arc = arc.getSigA();
+                }
             }
-            if (!auxA.getDestination().isBrand()) {
-                temp += auxA.getDistance();
-                auxA.getDestination().setBrand(true);
-                //shortRouteByDistance(verOri, verDest, vehicleweight, temp, auxA.getSigA());
-            }
-            auxA = auxA.getSigA();     
         }
     }
-
 
 }
 
