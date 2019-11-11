@@ -7,6 +7,7 @@
 package View;
 
 import Class.CanvasController;
+import Dialog.ArcDialog;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
@@ -84,9 +85,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        btnAddUser.setText("Agregar Usuario");
+        btnAddUser.setText("Usuarios");
 
-        btnAddOrder.setText("Crear Pedido");
+        btnAddOrder.setText("Pedidos");
 
         javax.swing.GroupLayout canvasContainerLayout = new javax.swing.GroupLayout(canvasContainer);
         canvasContainer.setLayout(canvasContainerLayout);
@@ -135,10 +136,13 @@ public class Main extends javax.swing.JFrame {
     private void addVertex(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVertex
         String name = JOptionPane.showInputDialog("Nombre de la ciudad");
         this.canvas.setTempName(name);
+        
+        
     }//GEN-LAST:event_addVertex
 
     private void addArc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArc
-       
+       ArcDialog dialog = new ArcDialog(null, true);
+       dialog.setVisible(true);
     }//GEN-LAST:event_addArc
 
     public static void main(String args[]) {

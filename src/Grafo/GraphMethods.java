@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Grafo;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
-/**
- *
- * @author DanielR
- */
+
 public class GraphMethods {
 
     public Vertex graph;
@@ -31,16 +25,18 @@ public class GraphMethods {
         }
         return false;
     }
-
-    public Vertex search(String name) {
-        if (graph != null) {
-            Vertex auxV = graph;
-            while (auxV.getSigV() != null) {
-                if (auxV.getName().equals(name)) {
-                    return auxV;
-                }
-                auxV = auxV.getSigV();
+    
+    
+    public Vertex search(String name){
+        if(this.graph == null)
+            return null;
+        
+        Vertex auxVertex = graph; 
+        while(auxVertex != null){
+            if(auxVertex.getName().equals(name)){
+                return auxVertex;
             }
+            auxVertex = auxVertex.getSigV();
         }
         return null;
     }
@@ -166,7 +162,7 @@ public class GraphMethods {
         return false;
     }
 
-    public boolean Modify(Vertex origin,Vertex destiny, double heavy, double maxVelocity, double distance){
+    public boolean Modify(Vertex origin,Vertex destiny, float heavy, float maxVelocity, float distance){
         Arc auxA = search(origin, destiny);
         if(auxA != null){
             Arc aux = search(destiny, origin);

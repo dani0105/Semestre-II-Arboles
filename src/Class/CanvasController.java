@@ -25,15 +25,11 @@ import java.awt.geom.Path2D;
  * @author DanielR
  */
 public class CanvasController extends Canvas implements ActionListener,MouseListener{
-
-    
-       
+ 
     private Singleton singleton;
     private Color color;
     private Path2D shape;
     private String tempName;
-    // BORRAR
-    private Vertex last ;
     
     public CanvasController(int width,int height) {
         this.setBackground(color.white);
@@ -42,12 +38,21 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
         this.tempName = "";
     }
     
+    
+    /**
+     * Draw graph in canvas. clear the screen and draw.
+     * @param g Canvas graphics.
+     */
     @Override
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D drawer = (Graphics2D) g;
-        if(this.last != null)
-            this.last.draw(drawer);
+        
+        Vertex aux = this.singleton.getGraphMethods().graph;
+        while(aux != null){
+            aux.draw(drawer);
+            aux = aux.getSigV();
+        }
         
     }
     
@@ -58,7 +63,7 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
     @Override
     public void mouseClicked(MouseEvent e) {
         if(!this.tempName.isEmpty()){
-            this.last = new Vertex(e.getX(),e.getY(),this.tempName,false);
+            this.singleton.getGraphMethods().add( this.tempName, e.getX(), e.getY() );
             this.tempName = "";
             repaint();
         }

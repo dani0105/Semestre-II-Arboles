@@ -6,10 +6,113 @@
 
 package HashTable;
 
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author DanielR
  */
 public class HashMethods {
     
+    private final int size = 13;
+    
+    private User table[];
+    
+    /**
+     * Constructor method
+     */
+    public HashMethods(){
+       this.table = new User[size];
+    }
+    
+    /**
+     * generate new hash key
+     * @param number user id to generate key
+     * @return hash key.
+     */
+    private int hash(int number){
+        return (number & 0xfffffff)% this.size;
+    }
+    
+    /**
+     * Insert user in table
+     * @param user user to insert
+     * @return  TRUE if inserted or False if not inserted.
+     */
+    public boolean put(User user){
+        int key = this.hash(user.getId());
+        
+        User aux = this.table[key];
+        
+        if(aux == null){
+            this.table[key] = user;
+        }else{
+            for (;aux != null; aux = aux.Next()){
+                if(aux.getId() == user.getId()){
+                    return false;
+                }
+                if(aux.Next() == null){
+                    aux.Next(user);
+                    break;
+                }
+            }
+        }
+        return true;
+    } 
+    
+    /**
+     * Search user by Id
+     * @param number id to search in list.
+     * @return Object User if is found or NULL if not found.
+     */
+    public User get(int number){
+        int key = this.hash(number);
+        
+        if(this.table[key] == null){
+            return null;
+        }
+        
+        User aux = this.table[key];
+        
+        for (;aux != null; aux = aux.Next()){
+            if(aux.getId() == number)
+                break;
+        }
+        
+        return aux;
+       
+    }
+    /**
+     * Print HashTable in console
+     */
+    public void print(){
+        for (int i = 0; i < this.table.length; i++) {
+            System.out.print("Indice: "+i+"[");
+            for (User aux = this.table[i]; aux != null; aux = aux.Next()) {
+                System.out.print(aux.getId()+",");
+            }
+            System.out.print("]\n");
+        }
+         
+    }
+    
+    /**
+     * Create a new Table model with all users.
+     * @return DefaulsTableModel with users to use in table component.
+     */
+    public DefaultTableModel getModel(){
+        DefaultTableModel model = new DefaultTableModel();
+        for (int i = 0; i < this.table.length; i++) {
+            for (User aux = this.table[i]; aux != null; aux = aux.Next()) {
+                Object[] row =new Object[3];
+                row[0] = aux.getId();
+                row[1] = aux.getName();
+                row[2] = aux.getLicense();
+                model.addRow(row);
+            }
+        }
+        return model;
+    }
+        
 }
