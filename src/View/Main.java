@@ -132,8 +132,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(btnAddCity)
                     .addComponent(btnAddPath)
                     .addComponent(btnAddUser)
-                    .addComponent(btnAddOrder))
-                .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(btnAddOrder)))
         );
 
         pack();
