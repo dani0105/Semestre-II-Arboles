@@ -6,17 +6,31 @@
 
 package View;
 
+import Class.Singleton;
+import Grafo.Vertex;
+import HashTable.User;
+import Tree.Node;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DanielR
  */
 public class OrderFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form OrderFrame
-     */
+    private Singleton singleton = Singleton.getInstance();
+    private DefaultListModel listModel = new DefaultListModel();
     public OrderFrame() {
         initComponents();
+        print();
+        loadGraphData();
+        loadUserData();
+        loadOrdersData();
+    }
+
+    OrderFrame(Object object, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -28,22 +42,512 @@ public class OrderFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jSpinner2 = new javax.swing.JSpinner();
+        jTextField1 = new javax.swing.JTextField();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        ComboOrigenADD = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        ComboDestinoADD = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        idOrderSpinns = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        PesoSpin = new javax.swing.JSpinner();
+        addButton = new javax.swing.JButton();
+        UserComboADD = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        comboTree = new javax.swing.JComboBox<>();
+        comboNewDestiny = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        newWeightSpin = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        comboNewUser = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        comboDelete = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jTextField1.setText("jTextField1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel1.setText("Origen del pedido:");
+
+        ComboOrigenADD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboOrigenADDActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel3.setText("Destino del pedido:");
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel5.setText("Identificacion del pedido:");
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel2.setText("Usuario encargado:");
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel6.setText("Peso de la mercancia:");
+
+        addButton.setText("Agregar pedido");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ComboOrigenADD, 0, 241, Short.MAX_VALUE)
+                                .addComponent(ComboDestinoADD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(UserComboADD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(PesoSpin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                .addComponent(idOrderSpinns, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(addButton)))
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(17, 17, 17))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboOrigenADD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ComboDestinoADD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(4, 4, 4))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(UserComboADD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idOrderSpinns)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PesoSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addComponent(addButton)
+                .addGap(43, 43, 43)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Agregar pedidos", jPanel4);
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel7.setText("Seleccione el id del pedido");
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel8.setText("Seleccione el nuevo destino");
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel9.setText("Seleccione el nuevo peso");
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel10.setText("seleccione el nuevo usuario");
+
+        jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(184, 184, 184)
+                                        .addComponent(newWeightSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(comboTree, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(comboNewUser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(comboNewDestiny, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(205, 205, 205)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboNewDestiny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(comboNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(newWeightSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Modificar pedidos", jPanel1);
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel11.setText("Seleccione el id del pedido");
+
+        jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Cancelar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(comboDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(jButton2)))
+                .addContainerGap(139, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(comboDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Eliminar pedidos", jPanel2);
+
+        jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jList1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jScrollPane1.setViewportView(jList1);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Ver pedidos", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        if ((Integer.parseInt(idOrderSpinns.getValue().toString()) <= 0) || (Integer.parseInt(PesoSpin.getValue().toString()) <= 0)) {
+            JOptionPane.showMessageDialog(null, "El peso de la mercancia y identificacion del pedido tienen que ser mayor a 0");
+        } else {
+            String[] array = UserComboADD.getSelectedItem().toString().split(" ");
+            String name = array[8];
+            name = name.replace(",", "");
+            User user = singleton.getUsers().get(Integer.parseInt(name));
+            Vertex origin = singleton.getGraphMethods().search(ComboOrigenADD.getSelectedItem().toString());
+            Vertex destiny = singleton.getGraphMethods().search(ComboDestinoADD.getSelectedItem().toString());
+            if ((user != null) && (origin != null) && (destiny != null)) {
+                if (origin != destiny) {
+                    int result = singleton.getTreeMethods().add((Integer) idOrderSpinns.getValue(), (Integer) PesoSpin.getValue(), origin, destiny, singleton.getTreeMethods().root, user);
+                    switch (result) {
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "En el sistema ya se encuentra una orden con el mismo id, ingrese otro");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(null, "El usuario selccionado no puede transportar esa cantidad de producto, la licencia no lo permite");
+                            break;
+                        default:
+                            loadOrdersData();
+                            print();
+                            JOptionPane.showMessageDialog(null, "El pedido se agrego exitosamente");
+                            break;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El origen y el destino no puedenser iguales");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor, intente de nuevo, puede ser que el origen, destino o el usuario no se encuentre en el sistema");
+            }
+
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void ComboOrigenADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboOrigenADDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboOrigenADDActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     if(Integer.parseInt(newWeightSpin.getValue().toString()) <= 0){
+           JOptionPane.showMessageDialog(null, "El peso de la mercancia del pedido tienen que ser mayor a 0");
+     }else{
+           String[] array = comboNewUser.getSelectedItem().toString().split(" ");
+            String Number = array[8];
+            Number = Number.replace(",", "");
+            User user = singleton.getUsers().get(Integer.parseInt(Number));
+            Vertex destiny = singleton.getGraphMethods().search(comboNewDestiny.getSelectedItem().toString());
+            if ((user != null) && (destiny != null)) {
+                int result = singleton.getTreeMethods().Modify(Integer.parseInt(comboTree.getSelectedItem().toString()), (Integer)newWeightSpin.getValue(), user, destiny, singleton.getTreeMethods().root );
+                    switch (result) {
+                        case 0:
+                            JOptionPane.showMessageDialog(null, "En el sistema no existe este nodo, o no hay pedidos");
+                            break;
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "El nuevo destino no puede ser igual al origen");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(null, "El usuario selccionado no puede transportar esa cantidad de producto, la licencia no lo permite");
+                            break;
+                        default:
+                            loadOrdersData();
+                            print();
+                            JOptionPane.showMessageDialog(null, "El pedido se modifico exitosamente");
+                            break;
+                    }         
+            }else{
+                JOptionPane.showMessageDialog(null, "Por favor, intente de nuevo, puede ser que el  destino o el usuario no se encuentre en el sistema");
+            }
+     }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(singleton.getTreeMethods().Delete(singleton.getTreeMethods().root, Integer.parseInt(comboDelete.getSelectedItem().toString()))){
+           loadOrdersData();
+           print();
+           JOptionPane.showMessageDialog(null, "El pedido se elimino exitosamente"); 
+        }else{
+            JOptionPane.showMessageDialog(null, "El pedido no existe en el sistema");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+          this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+          this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboDestinoADD;
+    private javax.swing.JComboBox<String> ComboOrigenADD;
+    private javax.swing.JSpinner PesoSpin;
+    private javax.swing.JComboBox<String> UserComboADD;
+    private javax.swing.JButton addButton;
+    private javax.swing.JComboBox<String> comboDelete;
+    private javax.swing.JComboBox<String> comboNewDestiny;
+    private javax.swing.JComboBox<String> comboNewUser;
+    private javax.swing.JComboBox<String> comboTree;
+    private javax.swing.JSpinner idOrderSpinns;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSpinner newWeightSpin;
     // End of variables declaration//GEN-END:variables
+    private void loadGraphData() {
+      ComboDestinoADD.removeAllItems();
+      ComboOrigenADD.removeAllItems();
+      comboNewDestiny.removeAllItems();
+      singleton.getGraphMethods().addCombo(ComboOrigenADD);
+      singleton.getGraphMethods().addCombo(ComboDestinoADD);
+      singleton.getGraphMethods().addCombo(comboNewDestiny);
+    }
+    private void loadUserData(){
+        UserComboADD.removeAllItems();
+        comboNewUser.removeAllItems();
+        singleton.getUsers().loadComboBox(UserComboADD);
+        singleton.getUsers().loadComboBox(comboNewUser);
+    }
+    private void loadOrdersData(){
+        comboTree.removeAllItems();
+        comboDelete.removeAllItems();
+        singleton.getTreeMethods().addComboID( singleton.getTreeMethods().root, comboTree);
+        singleton.getTreeMethods().addComboID( singleton.getTreeMethods().root, comboDelete);
+    }
+    
+    private void print(){
+        listModel.clear();
+        singleton.getTreeMethods().Print(singleton.getTreeMethods().root, listModel);
+        jList1.setModel(listModel);
+    }
 }

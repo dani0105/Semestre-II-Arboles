@@ -7,9 +7,8 @@ package View;
 
 import Class.Singleton;
 import Grafo.Vertex;
-import javax.swing.JComboBox;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -17,10 +16,11 @@ import javax.swing.JOptionPane;
  */
 public class SettingsGraph extends javax.swing.JFrame {
 
-    Singleton single = Singleton.getInstance();
-            
+    private Singleton singleton = Singleton.getInstance();
+    private DefaultListModel listModel = new DefaultListModel();
     public SettingsGraph() {
         initComponents();
+        loadCombo();
     }
 
     /**
@@ -32,30 +32,104 @@ public class SettingsGraph extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollBar1 = new javax.swing.JScrollBar();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        DeleteCombo = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        LBL = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        ModifyCombo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Nombrelbl = new javax.swing.JLabel();
-        NewNameTXT = new javax.swing.JTextField();
+        ComboModCity = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        newName = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        comoModOrigin = new javax.swing.JComboBox<>();
+        ComboDestMod = new javax.swing.JComboBox<>();
+        newPeso = new javax.swing.JSpinner();
+        NewVelocity = new javax.swing.JSpinner();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        ComboCityDelete = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        comboOriDelete = new javax.swing.JComboBox<>();
+        comboDesDelete = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel1.setText("Seleccione el nombre de la ciudad:");
 
-        jLabel3.setText("Ciudad seleccionada:");
+        jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        LBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel2.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel2.setText("Ingrese el nuevo nombre:");
 
-        jButton2.setText("Eliminar");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ComboModCity, 0, 247, Short.MAX_VALUE)
+                    .addComponent(newName))
+                .addGap(49, 49, 49))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jButton1)
+                .addContainerGap(265, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(ComboModCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(46, 46, 46)
+                .addComponent(jButton1)
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Modificar ciudad", jPanel1);
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel3.setText("Seleccione la ciudad de origen:");
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel4.setText("Seleccione la ciudad de destino:");
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel6.setText("Ingrese el nuevo peso maximo:");
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel7.setText("Ingrese la nueva velocidad maxima:");
+
+        jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -67,147 +141,285 @@ public class SettingsGraph extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(LBL, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(DeleteCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comoModOrigin, 0, 213, Short.MAX_VALUE)
+                    .addComponent(ComboDestMod, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(NewVelocity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                        .addComponent(newPeso, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGap(57, 57, 57))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(237, 237, 237))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(DeleteCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(comoModOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(ComboDestMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(newPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewVelocity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(80, 80, 80))
         );
 
-        jTabbedPane1.addTab("Eliminar ciudad", jPanel2);
+        jTabbedPane1.addTab("Modificar ruta", jPanel2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel5.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel5.setText("Seleccione el nombre de la ciudad");
 
-        ModifyCombo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ModifyCombo.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModifyComboActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Ingrese el nuevo nombre:");
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ComboCityDelete, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(jButton3)))
+                .addContainerGap(193, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(jLabel5)
+                .addGap(31, 31, 31)
+                .addComponent(ComboCityDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jButton3)
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
 
-        jLabel2.setText("Ciudad seleccionada:");
+        jTabbedPane1.addTab("Eliminar ciudad", jPanel3);
 
-        Nombrelbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel9.setText("Seleccione la ciudad de origen:");
 
-        NewNameTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel8.setText("Seleccione la ciuda de destino:");
 
-        jButton1.setText("Modificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Nombrelbl, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(NewNameTXT)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(ModifyCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jButton1)))
-                .addContainerGap(66, Short.MAX_VALUE))
+        comboDesDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDesDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
+                .addGap(81, 81, 81)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboOriDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboDesDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(251, 251, 251))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(ModifyCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nombrelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NewNameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(70, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(comboOriDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(comboDesDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(jButton4)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Modificar ciudad", jPanel1);
+        jTabbedPane1.addTab("Eliminar ruta", jPanel4);
+
+        jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setViewportView(jList1);
+
+        jButton5.setText("Profundidad");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Amplitud");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jButton5)
+                .addGap(66, 66, 66)
+                .addComponent(jButton6)
+                .addContainerGap(182, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6)))
+        );
+
+        jTabbedPane1.addTab("Informacion", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ModifyComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyComboActionPerformed
-
-        if (!ModifyCombo.getSelectedItem().toString().equals("Selecione la ciudad")) {
-            Nombrelbl.setText(ModifyCombo.getSelectedItem().toString());
-        }
-    }//GEN-LAST:event_ModifyComboActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (NewNameTXT.getText().isEmpty() && Nombrelbl.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Faltan datos obligatorios");
+        if (newName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Falta el nuevo nombre");
         } else {
-            if (single.getGraphMethods().Modify(Nombrelbl.getText(), NewNameTXT.getText())) {
-                JOptionPane.showMessageDialog(null, "Ciudad mofificada con exito");
+            if (singleton.getGraphMethods().Modify(ComboModCity.getSelectedItem().toString(), newName.getText())) {
+                loadCombo();
+                JOptionPane.showMessageDialog(null, "Se modifico con exito");
             } else {
-                JOptionPane.showMessageDialog(null, "La ciudad por modificar no existe");
+                JOptionPane.showMessageDialog(null, "El nombre ingresado para modificar no corresponde a un ciudad del sistema");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Vertex aux = singleton.getGraphMethods().search(ComboCityDelete.getSelectedItem().toString());
+        if (singleton.getGraphMethods().delete(aux)) {
+            loadCombo();
+            JOptionPane.showMessageDialog(null, "Se elimino con exito");
+        }else{
+           JOptionPane.showMessageDialog(null, "La ciudad ingresada no existe en el sistema");            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       listModel.clear();
+       singleton.getGraphMethods().depth(singleton.getGraphMethods().graph, listModel);
+       jList1.setModel(listModel);
+       singleton.getGraphMethods().CleanBrand();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+         listModel.clear();
+         singleton.getGraphMethods().amplitude(singleton.getGraphMethods().graph, listModel);
+         jList1.setModel(listModel);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Vertex origin = singleton.getGraphMethods().search(comboOriDelete.getSelectedItem().toString());
+        Vertex destination = singleton.getGraphMethods().search(comboDesDelete.getSelectedItem().toString());
+        if (origin != null || destination != null) {
+            if (singleton.getGraphMethods().delete(origin, destination)) {
+                loadCombo();
+                JOptionPane.showMessageDialog(null, "Se elimino con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Las ciudades ingresadas no tienen una ruta directa en el sistema");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Las ciudades ingresadas no existen en el sistema");
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void comboDesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDesDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDesDeleteActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       if(LBL.getText().isEmpty()){
-           JOptionPane.showMessageDialog(null, "Faltan datos obligatorios");
-       }
-              
+        if ((Float) newPeso.getValue() <= 0 || (Float) NewVelocity.getValue() <= 0) {
+            JOptionPane.showMessageDialog(null, "El nuevo peso o la nueva velocidad tiene que ser mayores a 0");
+        } else {
+            Vertex origin = singleton.getGraphMethods().search(comoModOrigin.getSelectedItem().toString());
+            Vertex destination = singleton.getGraphMethods().search(ComboDestMod.getSelectedItem().toString());
+            if (origin != null && destination != null) {
+                if (singleton.getGraphMethods().Modify(origin, destination, (Float) newPeso.getValue(), (Float) NewVelocity.getValue())) {
+                    loadCombo();
+                    JOptionPane.showMessageDialog(null, "Se modifico con exito");
+                } else {
+                    JOptionPane.showMessageDialog(null, "En el sistema no se encuentra una ruta entre esas ciudades");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El origen o el destino ingresado no existe");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -236,7 +448,6 @@ public class SettingsGraph extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SettingsGraph.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -247,40 +458,51 @@ public class SettingsGraph extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> DeleteCombo;
-    private javax.swing.JLabel LBL;
-    private javax.swing.JComboBox<String> ModifyCombo;
-    private javax.swing.JTextField NewNameTXT;
-    private javax.swing.JLabel Nombrelbl;
+    private javax.swing.JComboBox<String> ComboCityDelete;
+    private javax.swing.JComboBox<String> ComboDestMod;
+    private javax.swing.JComboBox<String> ComboModCity;
+    private javax.swing.JSpinner NewVelocity;
+    private javax.swing.JComboBox<String> comboDesDelete;
+    private javax.swing.JComboBox<String> comboOriDelete;
+    private javax.swing.JComboBox<String> comoModOrigin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField newName;
+    private javax.swing.JSpinner newPeso;
     // End of variables declaration//GEN-END:variables
-    private void AddModifyCombo() {
-        ModifyCombo.addItem("Selecione la ciudad");
-        if (single.getGraphMethods().graph != null) {
-            Vertex auxV = single.getGraphMethods().graph;
-            while (auxV != null) {
-                ModifyCombo.addItem(auxV.getName());
-                auxV = auxV.getSigV();
-            }
-        }
-    }
-
-    private void AddDeleteCombo() {
-        DeleteCombo.addItem("Selecione la ciudad");
-        if (single.getGraphMethods().graph != null) {
-            Vertex auxV = single.getGraphMethods().graph;
-            while (auxV != null) {
-                DeleteCombo.addItem(auxV.getName());
-                auxV = auxV.getSigV();
-            }
-        }
+   private void loadCombo() {
+        ComboModCity.removeAllItems();
+        ComboCityDelete.removeAllItems();
+        ComboDestMod.removeAllItems();
+        comboDesDelete.removeAllItems();
+        comboOriDelete.removeAllItems();
+        comoModOrigin.removeAllItems();
+        singleton.getGraphMethods().addCombo(ComboModCity);
+        singleton.getGraphMethods().addCombo(ComboCityDelete);
+        singleton.getGraphMethods().addCombo(ComboDestMod);
+        singleton.getGraphMethods().addCombo(comboDesDelete);
+        singleton.getGraphMethods().addCombo(comboOriDelete);
+        singleton.getGraphMethods().addCombo(comoModOrigin);
     }
 }

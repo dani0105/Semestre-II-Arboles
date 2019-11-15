@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Tree;
 
 import Grafo.Vertex;
-import HashTable.User;
+import HashTable.*;
+import static Enums.Licenses.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -16,58 +18,130 @@ import HashTable.User;
 public class TreeMethods {
 
     public Node root;
-    private boolean addVar;
-    private Node modVar;
+    private int addVar;
+    private int modVar;
 
-    public boolean add(int id, double itemWeight, User sigU, Vertex sender, Vertex receiver, Node aux) {
-        Node node = new Node(id, itemWeight, sigU, sender, receiver);
+    public TreeMethods() {
+      
+    }
+
+    /*
+    add order
+    @ return  1 = the order already exists
+    @ return  2 = the user is not suitable for this type of merchandise
+    @ return  3 = the order was added
+     */
+    public int add(int id, double itemWeight, Vertex sender, Vertex receiver, Node aux, User user) {
+        
         if (root == null) {
-            return addVar = false;
+            Node node = new Node(id, itemWeight, user, sender, receiver);
+            root = node;
+            return addVar = 3;
         } else {
+            Node node = new Node(id, itemWeight, user, sender, receiver);
             if (id == aux.getId()) {
-                return addVar = false;
+                return addVar = 1;
             } else {
                 if (id < aux.getId()) {
                     if (aux.getIzq() == null) {
-                        aux.setIzq(node);
-                        return addVar = true;
+                        if (itemWeight < 4) {
+                            if (user.getLicense().equals(B1)) {
+                                aux.setIzq(node);
+                                return addVar = 3;
+                            }
+                        } else if (itemWeight < 8) {
+                            if (user.getLicense().equals(B2)) {
+                                aux.setIzq(node);
+                                return addVar = 3;
+                            }
+                        } else {
+                            if (user.getLicense().equals(B3) || user.getLicense().equals(B4)) {
+                                aux.setIzq(node);
+                                return addVar = 3;
+                            }
+                        }
+                        return addVar = 2;
                     } else {
-                        add(id, itemWeight, sigU, sender, receiver, aux.getIzq());
+                        add(id, itemWeight, sender, receiver, aux.getIzq(), user);
                     }
                 } else {
                     if (aux.getDer() == null) {
-                        aux.setDer(node);
-                        return addVar = true;
+                        if (itemWeight < 4) {
+                            if (user.getLicense().equals(B1)) {
+                                aux.setDer(node);
+                                return addVar = 3;
+                            }
+                        } else if (itemWeight < 8) {
+                            if (user.getLicense().equals(B2)) {
+                                aux.setDer(node);
+                                return addVar = 3;
+                            }
+                        } else {
+                            if (user.getLicense().equals(B3) || user.getLicense().equals(B4)) {
+                                aux.setDer(node);
+                                return addVar = 3;
+                            }
+                        }
+                        return addVar = 2;
                     } else {
-                        add(id, itemWeight, sigU, sender, receiver, aux.getDer());
+                        add(id, itemWeight, sender, receiver, aux.getDer(), user);
                     }
                 }
             }
         }
         return addVar;
     }
-   
-    public Node Modify(int id, double itemWeight, User sigU, Vertex sender, Node aux) {
+
+     /*
+    modify order
+    @ return  0 = don´t exist nodes
+    @ return  1 = the new destiny and the origin is the same
+    @ return  2 = the user is not suitable for this type of merchandise
+    @ return  3 = the order was modify
+     */
+    public int Modify(int id, double itemWeight, User user, Vertex reciver, Node aux) {
         if (root == null) {
-            return modVar = null;
+            return modVar = 0;
         } else {
             if (id == aux.getId()) {
-                aux.setItemWeight(itemWeight);
-                aux.setReceiver(sender);
-                aux.setSigU(sigU);
-                return modVar = aux;
+                if (reciver != aux.getSender()) {
+                    if (itemWeight < 4) {
+                        if (user.getLicense().equals(B1)) {
+                            aux.setItemWeight(itemWeight);
+                            aux.setReceiver(reciver);
+                            aux.setUser(user);
+                            return modVar = 3;
+                        }
+                    } else if (itemWeight < 8) {
+                        if (user.getLicense().equals(B2)) {
+                            aux.setItemWeight(itemWeight);
+                            aux.setReceiver(reciver);
+                            aux.setUser(user);
+                            return modVar = 3;
+                        }
+                    } else {
+                        if (user.getLicense().equals(B3) || user.getLicense().equals(B4)) {
+                            aux.setItemWeight(itemWeight);
+                            aux.setReceiver(reciver);
+                            aux.setUser(user);
+                            return modVar = 3;
+                        }
+                    }
+                    return modVar = 2;
+                }
+                return modVar = 1;
             } else {
                 if (id < aux.getId()) {
                     if (aux.getIzq() == null) {
-                        return modVar = null;
+                        return modVar = 0;
                     } else {
-                        Modify(id, itemWeight, sigU, sender, aux.getIzq());
+                        Modify(id, itemWeight, user, reciver, aux.getIzq());
                     }
                 } else {
                     if (aux.getDer() == null) {
-                        return modVar = null;
+                        return modVar = 0;
                     } else {
-                        Modify(id, itemWeight, sigU, sender, aux.getDer());
+                        Modify(id, itemWeight, user, reciver, aux.getDer());
                     }
                 }
             }
@@ -150,5 +224,27 @@ public class TreeMethods {
             return true;
         }
         return false;
+    }
+
+    public void addComboID(Node aux, JComboBox combo) {
+        if (aux == null) {
+            return;
+        }
+        addComboID(aux.getIzq(), combo);
+        combo.addItem(aux.getId());
+        addComboID(aux.getDer(), combo);
+    }
+    
+    public void Print( Node aux, DefaultListModel listModel){
+       if(aux == null){
+            return;
+        }
+        Print(aux.getIzq(), listModel);
+        listModel.addElement("Punto de salida: " + aux.getSender().getName());
+        listModel.addElement("Punto de llegada: " + aux.getReceiver().getName());
+        listModel.addElement("Peso de la mercancia: " + aux.getItemWeight());
+        listModel.addElement("Usuario: " + aux.getUser().getName());
+        listModel.addElement("===============================================" );
+        Print(aux.getDer(), listModel);
     }
 }

@@ -3,13 +3,18 @@ package Grafo;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 
 
 public class GraphMethods {
 
     public Vertex graph;
 
-
+    private String routC = "";
+    private float min = 0;  
+    private float totalTime = 0;
+    private float totalDistance = 0;
 
     public boolean add(String name, int x, int y) {
         if (search(name) == null) {
@@ -41,7 +46,7 @@ public class GraphMethods {
         return null;
     }
 
-    public boolean add(String ori, String dest, int weight, double heavyvehicles, double distance, double maxVelocity) {
+    public boolean add(String ori, String dest, float heavyvehicles, float distance, float maxVelocity, float time) {
         if (ori.equals(dest)) {
             return false;
         } else {
@@ -49,7 +54,7 @@ public class GraphMethods {
             Vertex destination = search(dest);
             if ((origin != null) && (destination != null)) {
                 if (search(origin, destination) == null) {
-                    Arc newArc = new Arc(heavyvehicles, distance, maxVelocity);
+                    Arc newArc = new Arc(heavyvehicles, distance, maxVelocity, time);
                     newArc.setDestination(destination);
                     if (origin.getSigA() == null) {
                         origin.setSigA(newArc);
@@ -58,7 +63,7 @@ public class GraphMethods {
                         origin.getSigA().setAntA(newArc);
                         origin.setSigA(newArc);
                     }
-                    Arc reverse = new Arc(heavyvehicles, distance, maxVelocity);
+                    Arc reverse = new Arc(heavyvehicles, distance, maxVelocity, time);
                     reverse.setDestination(origin);
                     if (destination.getSigA() == null) {
                         destination.setSigA(reverse);
@@ -94,7 +99,7 @@ public class GraphMethods {
         } else {
             Arc auxArc = search(origin, destination);
             if (auxArc != null) {
-                Arc auxA = auxArc;
+                Arc auxA = search(destination, origin);
                 if (auxArc == origin.getSigA()) {
                     origin.setSigA(auxArc.getSigA());
                     if (origin.getSigA() != null) {
@@ -162,97 +167,131 @@ public class GraphMethods {
         return false;
     }
 
-    public boolean Modify(Vertex origin,Vertex destiny, float heavy, float maxVelocity, float distance){
+    public boolean Modify(Vertex origin,Vertex destiny, float heavy, float maxVelocity){
         Arc auxA = search(origin, destiny);
         if(auxA != null){
             Arc aux = search(destiny, origin);
-            auxA.setHeavyvehicles(heavy);
+            auxA.setMaxWeight(heavy);
             auxA.setMaxVelocity(maxVelocity);
-            auxA.setDistance(distance);
-            aux.setHeavyvehicles(heavy);
-            aux.setDistance(distance);
+            aux.setMaxWeight(heavy);
             aux.setMaxVelocity(maxVelocity);
             return true;
         }
         return false;
     }
 
-    public void depth(Vertex vertex) {
-        if ((vertex == null) && (vertex.isBrand())) {
+    public void depth(Vertex vertex, DefaultListModel listModel) {
+        if ((vertex == null) || (vertex.isBrand())) {
             return;
         } else {
             vertex.setBrand(true);
             Arc auxA = vertex.getSigA();
             while (auxA != null) {
-
-                depth(auxA.getDestination());
+                listModel.addElement("Origen: " + vertex.getName());
+                listModel.addElement("Destino: " + auxA.getDestination().getName());
+                listModel.addElement("Peso maximo " + auxA.getMaxWeight() + " de toneladas");
+                listModel.addElement("Velocidad maxima: " + auxA.getMaxVelocity());
+                listModel.addElement("Distancia: " + auxA.getDistance());
+                listModel.addElement("Tiempo de traslado en horas: " + auxA.getTime());
+                listModel.addElement("===================================================");
+                depth(auxA.getDestination(), listModel);
                 auxA = auxA.getSigA();
             }
         }
     }
+
     
-    
-    public void amplitude(Vertex vertex) {
+    public void amplitude(Vertex vertex, DefaultListModel listModel) {
         if(vertex == null){
-            
-        }else{
+             listModel.addElement("   ");
+        }else {
             Vertex aux = vertex;
-            while(aux != null){
-                Arc arc = aux.getSigA();
-                while(arc != null){
-                    
-                    arc = arc.getSigA();
+            while (aux != null) {
+                Arc auxA = aux.getSigA();
+                while (auxA != null) {
+                    listModel.addElement("Origen: " + aux.getName());
+                    listModel.addElement("Destino: " + auxA.getDestination().getName());
+                    listModel.addElement("Peso maximo " + auxA.getMaxWeight() + " de toneladas");
+                    listModel.addElement("Velocidad maxima: " + auxA.getMaxVelocity());
+                    listModel.addElement("Distancia: " + auxA.getDistance());
+                    listModel.addElement("Tiempo de traslado en horas: " + auxA.getTime());
+                    listModel.addElement("===================================================");
+                    auxA = auxA.getSigA();
                 }
                 aux = aux.getSigV();
             }
         }
     }
-    
-   
-    /* 
-    public void shortRouteByTime(Vertex origin, Vertex destiny, double vehicleweight) {
-        Vertex min = null;
-        double time = Double.MAX_VALUE;
-        double totalTime = 0;
-        double totalDistance = 0;
+
+
+     
+    public void shortRouteByTime(Vertex origin, Vertex destiny,String rut, float time) {
+         if ((origin == null) || (origin.isBrand())) {
+            return;
+        }
+        if (origin == destiny) {
+            System.out.println("Ruta: " + rut + destiny.getName());
+            System.out.println("Con un tiempo de: " + time);
+            System.out.println("La distancia recorrida es de " + totalDistance);
+
+            if ((routC.equals("")) || (min > time)) {
+                routC = rut + destiny.getName();
+                min = time;
+                totalDistance += origin.getSigA().getDistance();
+            }           
+            return;
+        }
+        origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
-            if (auxA.getDestination() == destiny) {
-                auxA.getDestination().setBrand(true);
-                break;
-            }
-           
-            if (auxA.getTime() < time) {
-                if (vehicleweight < auxA.getHeavyvehicles()) {
-                    auxA.getDestination().setBrand(true);
-                    totalTime += time;
-                    totalDistance += auxA.getDistance();
-                    min = auxA.getDestination();
-                    auxA = min.getSigA();
-                    time = auxA.getTime();
-                }
-            }
-            auxA = auxA.getSigA();
+            shortRouteByDistance(auxA.getDestination(), destiny, rut +", "+ origin.getName(), time + auxA.getTime());
+            auxA.setSigA(auxA);
         }
+        origin.setBrand(false);
 
     }
-*/
-   ArrayList<Vertex> saveVertex = new ArrayList<>();
-    public void shortRouteByDistance(Vertex Ori, Vertex Dest, double vehicleweight) {
-        if (Dest.isBrand()) {
+
+    
+    public void shortRouteByDistance(Vertex origin, Vertex destiny, String rut, float dist) {
+        if ((origin == null) || (origin.isBrand())) {
             return;
-        } else {
-            if (Ori.getSigA() != null) {
-                Arc arc = Ori.getSigA();
-                while (arc != null) {
-                    if (arc.getHeavyvehicles() < vehicleweight) {
-                       
-                    }
-                    arc = arc.getSigA();
-                }
+        }
+        if (origin == destiny) {
+            System.out.println("Ruta: " + rut + destiny.getName());
+            System.out.println("Con una distancia de: " + dist);
+            System.out.println("El tiempo de traslado es de " + totalTime + " de horas");
+
+            if ((routC.equals("")) || (min > dist)) {
+                routC = rut + destiny.getName();
+                min = dist;
+                totalTime += origin.getSigA().getTime();
+            }           
+            return;
+        }
+        origin.setBrand(true);
+        Arc auxA = origin.getSigA();
+        while (auxA != null) {
+            shortRouteByDistance(auxA.getDestination(), destiny, rut +", "+ origin.getName(), dist + auxA.getDistance());
+            auxA.setSigA(auxA);
+        }
+        origin.setBrand(false);
+    }
+    public void addCombo(JComboBox combo){
+          if (graph != null) {
+            Vertex auxV = graph;
+            while (auxV != null) {
+                combo.addItem(auxV.getName());
+                auxV = auxV.getSigV();
             }
         }
     }
-
+    public void CleanBrand() {
+        if (graph != null) {
+            Vertex auxV = graph;
+            while (auxV != null) {
+                auxV.setBrand(false);
+                auxV = auxV.getSigV();
+            }
+        }     
+    }
 }
-

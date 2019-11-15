@@ -30,9 +30,12 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnAddPath" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAddUser" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnAddOrder" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
           <Component id="canvasContainer" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -49,6 +52,7 @@
                   <Component id="btnAddPath" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAddUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAddOrder" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -91,11 +95,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Usuarios"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddUserActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAddOrder">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pedidos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddOrderActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="canvasContainer">
 
@@ -112,5 +122,13 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ajustes Rutas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

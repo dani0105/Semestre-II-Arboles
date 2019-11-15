@@ -68,6 +68,7 @@ public class Main extends javax.swing.JFrame {
         btnAddUser = new javax.swing.JButton();
         btnAddOrder = new javax.swing.JButton();
         canvasContainer = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,8 +87,18 @@ public class Main extends javax.swing.JFrame {
         });
 
         btnAddUser.setText("Usuarios");
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUserActionPerformed(evt);
+            }
+        });
 
         btnAddOrder.setText("Pedidos");
+        btnAddOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout canvasContainerLayout = new javax.swing.GroupLayout(canvasContainer);
         canvasContainer.setLayout(canvasContainerLayout);
@@ -100,6 +111,13 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
+        jButton1.setText("Ajustes Rutas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,9 +129,12 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAddPath)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddOrder))
+                .addComponent(btnAddOrder)
+                .addGap(12, 12, 12))
             .addComponent(canvasContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -127,7 +148,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(btnAddCity)
                     .addComponent(btnAddPath)
                     .addComponent(btnAddUser)
-                    .addComponent(btnAddOrder)))
+                    .addComponent(btnAddOrder)
+                    .addComponent(jButton1)))
         );
 
         pack();
@@ -141,9 +163,24 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_addVertex
 
     private void addArc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addArc
-       ArcDialog dialog = new ArcDialog(null, true);
-       dialog.setVisible(true);
+        ArcDialog dialog = new ArcDialog(null, true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_addArc
+
+    private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
+        OrderFrame OF = new OrderFrame();
+        OF.setVisible(true);
+    }//GEN-LAST:event_btnAddOrderActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SettingsGraph SG = new SettingsGraph();
+        SG.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
+        UserFrame UF = new UserFrame();
+        UF.setVisible(true);
+    }//GEN-LAST:event_btnAddUserActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -184,5 +221,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnAddUser;
     private javax.swing.JPanel canvasContainer;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,14 +26,15 @@ public class Singleton {
     
     private Singleton (){
       this.map = new GraphMethods();
+      this.orders = new TreeMethods();
       this.users = new HashMethods();
       
       this.map.add("A", 100, 100);
       this.map.add("B", 200, 200);
       this.map.add("C", 150, 200);
       
-      this.map.add("A", "B", 20, 40, 60, LocalTime.of(1,30,0));
-      this.map.add("B", "C", 20, 40, 60, LocalTime.of(1,30,0));
+      this.map.add("A", "B", 20, 40, 60, 2.5F );
+      this.map.add("B", "C", 20, 40, 60, 2.5F);
       
       
       this.users.put(new User(1, "Daniel", Licenses.B1));

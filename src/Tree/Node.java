@@ -19,14 +19,14 @@ public class Node {
     private double itemWeight;
     private Node izq;
     private Node der;
-    private User sigU;
+    private User user;
     private Vertex sender;
     private Vertex receiver;
 
-    public Node(int id, double itemWeight, User sigU, Vertex sender, Vertex receiver) {
+    public Node(int id, double itemWeight, User user, Vertex sender, Vertex receiver) {
         this.id = id;
         this.itemWeight = itemWeight;
-        this.sigU = sigU;
+        this.user = user;
         this.sender = sender;
         this.receiver = receiver;
     }
@@ -63,13 +63,15 @@ public class Node {
         this.der = der;
     }
 
-    public User getSigU() {
-        return sigU;
+    public User getUser() {
+        return user;
     }
 
-    public void setSigU(User sigU) {
-        this.sigU = sigU;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+   
 
     public Vertex getSender() {
         return sender;

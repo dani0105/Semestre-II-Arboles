@@ -27,10 +27,10 @@ public class Arc {
    
     private float maxWeight;
     private float distance;
-    private LocalTime time;
+    private float time;
     private float maxVelocity;
 
-    public Arc(float maxWeight, float distance, float maxVelocity, LocalTime time){
+    public Arc(float maxWeight, float distance, float maxVelocity, float time){
         this.maxWeight = maxWeight;
         this.distance = distance;
         this.maxVelocity = maxVelocity;
@@ -96,11 +96,11 @@ public class Arc {
         this.distance = distance;
     }
 
-    public LocalTime getTime() {
+    public float getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(float time) {
         this.time = time;
     }
 
