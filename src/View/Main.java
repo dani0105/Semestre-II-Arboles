@@ -202,8 +202,8 @@ public class Main extends javax.swing.JFrame {
         Node aux = this.singleton.getTreeMethods().root;
         if(aux == null){
             JOptionPane.showMessageDialog(this, "No hay pedidos");
-        }else
-            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+        }else 
+            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f );
     }//GEN-LAST:event_SendOrder
 
     public static void main(String args[]) {
