@@ -251,6 +251,11 @@ public class GraphMethods {
 
     }
 
+    private void printBands(){
+        for (Vertex aux = this.graph; aux !=null; aux=this.graph) {
+            System.out.println(aux.getName()+":"+aux.getBrand());
+        }
+    }
     
     public void shortRouteByDistance(Vertex origin, Vertex destiny, String rut, float dist) {
         if ((origin == null) || (origin.isBrand())) {

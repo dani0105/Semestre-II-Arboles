@@ -8,8 +8,10 @@ package Class;
 
 import Enums.Licenses;
 import Grafo.GraphMethods;
+import Grafo.Vertex;
 import HashTable.HashMethods;
 import HashTable.User;
+import Tree.Node;
 import Tree.TreeMethods;
 import java.time.LocalTime;
 
@@ -29,28 +31,28 @@ public class Singleton {
       this.orders = new TreeMethods();
       this.users = new HashMethods();
       
-      this.map.add("Santa Clara", 10, 10);
-      this.map.add("Florencia", 100, 10);
-      this.map.add("Ciudad Quesada", 100, 100);
+      this.map.add("Santa Clara", 10, 50);
+      this.map.add("Florencia", 120, 60);
+      this.map.add("Ciudad Quesada", 125, 150);
       
-      this.map.add("Aguas Zarcas", 200, 100);
-      this.map.add("Pital", 200, 10);
-      this.map.add("Venecia", 300, 100);
+      this.map.add("Aguas Zarcas", 250, 140);
+      this.map.add("Pital", 260, 10);
+      this.map.add("Venecia", 350, 150);
       
-      this.map.add("Santa Clara", "Florencia", 20, 40, 60, 2.5F );
-      this.map.add("Florencia", "Ciudad Quesada", 20, 40, 60, 2.5F);
-      this.map.add("Ciudad Qesada", "Aguas Zarcas", 20, 40, 60, 2.5F);
-      this.map.add("Aguas Zarcas", "Pital", 20, 40, 60, 2.5F);
-      this.map.add("Aguas Zarcas", "Venecia", 20, 40, 60, 2.5F);
+      //                                      Peso-KM-KM/H-Time 
+      this.map.add("Santa Clara", "Florencia", 20, 8, 60, 2.5F );
+      this.map.add("Florencia", "Ciudad Quesada", 20, 10, 40, 3f);
+      //this.map.add("Florencia", "Pital", 30, 60, 70, 4F);
+      this.map.add("Ciudad Quesada", "Aguas Zarcas", 20, 24, 40, 2.5F);
+      this.map.add("Aguas Zarcas", "Pital", 20, 20, 70, 1.5F);
+      this.map.add("Aguas Zarcas", "Venecia", 24, 24, 65, 2.5F);
       
       
       this.users.put(new User(1, "Daniel", Licenses.B1));
       this.users.put(new User(14, "Andres", Licenses.B2));
-      this.users.put(new User(3, "Juan", Licenses.B3));
-      this.users.put(new User(4, "Juan", Licenses.B3));
-      this.users.put(new User(5, "Juan", Licenses.B3));
-      this.users.print();
-      
+      this.users.put(new User(3, "House", Licenses.B3));
+      this.users.put(new User(4, "Sebastian", Licenses.B3));
+      this.users.put(new User(5, "Ismael", Licenses.B3));
      
     }
     

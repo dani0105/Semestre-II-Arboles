@@ -46,6 +46,9 @@ public class Vertex {
         this.brand = brand;
         }
     
+    public boolean getBrand(){
+        return this.brand;
+    }
     /**
      * This methods draw the vertex in canvas.
      * @param g2d Canvas graphics

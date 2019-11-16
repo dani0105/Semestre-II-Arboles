@@ -48,9 +48,9 @@ public class OrderFrame extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ComboOrigenADD = new javax.swing.JComboBox<>();
+        ComboOrigenADD = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
-        ComboDestinoADD = new javax.swing.JComboBox<>();
+        ComboDestinoADD = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         idOrderSpinns = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
@@ -58,27 +58,27 @@ public class OrderFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         PesoSpin = new javax.swing.JSpinner();
         addButton = new javax.swing.JButton();
-        UserComboADD = new javax.swing.JComboBox<>();
+        UserComboADD = new javax.swing.JComboBox<String>();
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        comboTree = new javax.swing.JComboBox<>();
-        comboNewDestiny = new javax.swing.JComboBox<>();
+        comboTree = new javax.swing.JComboBox<String>();
+        comboNewDestiny = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         newWeightSpin = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
-        comboNewUser = new javax.swing.JComboBox<>();
+        comboNewUser = new javax.swing.JComboBox<String>();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        comboDelete = new javax.swing.JComboBox<>();
+        comboDelete = new javax.swing.JComboBox<String>();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -93,7 +93,7 @@ public class OrderFrame extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

@@ -7,7 +7,9 @@
 package View;
 
 import Class.CanvasController;
+import Class.Singleton;
 import Dialog.ArcDialog;
+import Tree.Node;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
@@ -19,13 +21,15 @@ public class Main extends javax.swing.JFrame {
 
     private CanvasController canvas;
     
+    private Singleton singleton;
+    
     public Main() {
         initComponents();
         
         int height = this.canvasContainer.getHeight();
         int width = this.canvasContainer.getWidth();
         this.canvas = new CanvasController(width, height);
-        
+        this.singleton= Singleton.getInstance();
         this.canvas.addMouseListener(new java.awt.event.MouseListener() {
 
             @Override
@@ -69,6 +73,7 @@ public class Main extends javax.swing.JFrame {
         btnAddOrder = new javax.swing.JButton();
         canvasContainer = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +123,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(51, 255, 51));
+        jButton2.setText("Enviar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendOrder(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +141,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btnAddCity)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAddPath)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddUser)
@@ -149,7 +164,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(btnAddPath)
                     .addComponent(btnAddUser)
                     .addComponent(btnAddOrder)
-                    .addComponent(jButton1)))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
         );
 
         pack();
@@ -181,6 +197,14 @@ public class Main extends javax.swing.JFrame {
         UserFrame UF = new UserFrame();
         UF.setVisible(true);
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void SendOrder(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendOrder
+        Node aux = this.singleton.getTreeMethods().root;
+        if(aux == null){
+            JOptionPane.showMessageDialog(this, "No hay pedidos");
+        }else
+            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+    }//GEN-LAST:event_SendOrder
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -222,5 +246,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel canvasContainer;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
