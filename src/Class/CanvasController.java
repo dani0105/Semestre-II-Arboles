@@ -50,6 +50,8 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
         
         Vertex aux = this.singleton.getGraphMethods().graph;
         while(aux != null){
+            g.setColor(Color.BLACK);
+            g.drawString(aux.getName(), aux.X(), aux.Y());
             aux.draw(drawer);
             aux = aux.getSigV();
         }
@@ -63,7 +65,10 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
     @Override
     public void mouseClicked(MouseEvent e) {
         if(!this.tempName.isEmpty()){
-            this.singleton.getGraphMethods().add( this.tempName, e.getX(), e.getY() );
+            Dimension2D dimension = this.singleton.getGraphMethods().graph.getDimension2D();
+            int width = (int)dimension.getWidth()/2;
+            int height = (int)dimension.getHeight()/2;
+            this.singleton.getGraphMethods().add( this.tempName, e.getX()-width, e.getY()-height );
             this.tempName = "";
             repaint();
         }

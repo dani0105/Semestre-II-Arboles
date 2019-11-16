@@ -126,9 +126,8 @@ public class HashMethods {
                 row[1] = aux.getName();
                 row[2] = aux.getLicense();
                 model.addRow(row);
-            }
+            } 
         }
-
     }
 
     /**
