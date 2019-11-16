@@ -29,12 +29,19 @@ public class Singleton {
       this.orders = new TreeMethods();
       this.users = new HashMethods();
       
-      this.map.add("A", 100, 100);
-      this.map.add("B", 200, 200);
-      this.map.add("C", 150, 200);
+      this.map.add("Santa Clara", 10, 10);
+      this.map.add("Florencia", 100, 10);
+      this.map.add("Ciudad Quesada", 100, 100);
       
-      this.map.add("A", "B", 20, 40, 60, 2.5F );
-      this.map.add("B", "C", 20, 40, 60, 2.5F);
+      this.map.add("Aguas Zarcas", 200, 100);
+      this.map.add("Pital", 200, 10);
+      this.map.add("Venecia", 300, 100);
+      
+      this.map.add("Santa Clara", "Florencia", 20, 40, 60, 2.5F );
+      this.map.add("Florencia", "Ciudad Quesada", 20, 40, 60, 2.5F);
+      this.map.add("Ciudad Qesada", "Aguas Zarcas", 20, 40, 60, 2.5F);
+      this.map.add("Aguas Zarcas", "Pital", 20, 40, 60, 2.5F);
+      this.map.add("Aguas Zarcas", "Venecia", 20, 40, 60, 2.5F);
       
       
       this.users.put(new User(1, "Daniel", Licenses.B1));

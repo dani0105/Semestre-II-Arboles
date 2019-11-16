@@ -115,10 +115,10 @@ public class HashMethods {
     
     /**
      * Create a new Table model with all users.
-     * @return DefaulsTableModel with users to use in table component.
+     * @param model Table model to insert data.
      */
-    public DefaultTableModel getModel(){
-        DefaultTableModel model = new DefaultTableModel();
+    public void getModel(DefaultTableModel model){
+        model.setRowCount(0);
         for (int i = 0; i < this.table.length; i++) {
             for (User aux = this.table[i]; aux != null; aux = aux.Next()) {
                 Object[] row = new Object[3];
@@ -128,7 +128,7 @@ public class HashMethods {
                 model.addRow(row);
             }
         }
-        return model;
+
     }
 
     /**
