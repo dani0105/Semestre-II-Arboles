@@ -9,6 +9,7 @@ package View;
 import Class.CanvasController;
 import Class.Singleton;
 import Dialog.ArcDialog;
+import Grafo.Vertex;
 import Tree.Node;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -200,10 +201,26 @@ public class Main extends javax.swing.JFrame {
 
     private void SendOrder(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendOrder
         Node aux = this.singleton.getTreeMethods().root;
-        if(aux == null){
+        String prueba = "Santa Clara,Florencia,Ciudad Quesada,Aguas Zarcas";
+        if(aux != null){
             JOptionPane.showMessageDialog(this, "No hay pedidos");
-        }else
-            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+        }
+            //this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+        String ruta[] = prueba.split(",");
+        
+        for(int i = 0; i< ruta.length-1 ; ++i){
+           Vertex current = this.singleton.getGraphMethods().search(ruta[i]);
+            
+           System.out.println("\nCurrent: "+current.getName());
+           Vertex next = this.singleton.getGraphMethods().search(ruta[i+1]);
+              System.out.println("Next: "+next.getName());
+           /*
+           if(current == null || next == null){
+               continue;
+           }*/
+              
+           this.canvas.drawOrder(current, next,1.3F);
+        }
     }//GEN-LAST:event_SendOrder
 
     public static void main(String args[]) {

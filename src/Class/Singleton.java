@@ -42,7 +42,7 @@ public class Singleton {
       //                                      Peso-KM-KM/H-Time 
       this.map.add("Santa Clara", "Florencia", 20, 8, 60, 2.5F );
       this.map.add("Florencia", "Ciudad Quesada", 20, 10, 40, 3f);
-      //this.map.add("Florencia", "Pital", 30, 60, 70, 4F);
+      this.map.add("Florencia", "Pital", 30, 60, 70, 4F);
       this.map.add("Ciudad Quesada", "Aguas Zarcas", 20, 24, 40, 2.5F);
       this.map.add("Aguas Zarcas", "Pital", 20, 20, 70, 1.5F);
       this.map.add("Aguas Zarcas", "Venecia", 24, 24, 65, 2.5F);

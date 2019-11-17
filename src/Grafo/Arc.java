@@ -24,6 +24,7 @@ public class Arc {
     private Arc antA;
     private Vertex destination;
     
+    private boolean isPath;
    
     private float maxWeight;
     private float distance;
@@ -52,6 +53,15 @@ public class Arc {
         g2d.drawLine(origin.X()+width, origin.Y()+height, this.destination.X()+width, this.destination.Y()+height);
         
     }
+
+    public boolean isIsPath() {
+        return isPath;
+    }
+
+    public void setIsPath(boolean isPath) {
+        this.isPath = isPath;
+    }
+    
     
     public Arc getSigA() {
         return sigA;

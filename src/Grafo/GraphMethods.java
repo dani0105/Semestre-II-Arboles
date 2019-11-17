@@ -251,8 +251,8 @@ public class GraphMethods {
 
     }
 
-    private void printBands(){
-        for (Vertex aux = this.graph; aux !=null; aux=this.graph) {
+    public void printBands(){
+        for (Vertex aux = this.graph; aux !=null; aux= aux.getSigV()) {
             System.out.println(aux.getName()+":"+aux.getBrand());
         }
     }
@@ -299,4 +299,4 @@ public class GraphMethods {
             }
         }     
     }
-}
+   }

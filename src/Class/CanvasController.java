@@ -19,6 +19,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Path2D;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,14 +31,17 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
  
     private Singleton singleton;
     private Color color;
-    private Path2D shape;
     private String tempName;
+    
+    
+   
     
     public CanvasController(int width,int height) {
         this.setBackground(color.white);
         this.setSize(width, height);
         this.singleton = Singleton.getInstance();
         this.tempName = "";
+      
     }
     
     
@@ -46,6 +52,7 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
     @Override
     public void paint(Graphics g){
         super.paint(g);
+        
         Graphics2D drawer = (Graphics2D) g;
         
         Vertex aux = this.singleton.getGraphMethods().graph;
@@ -54,6 +61,41 @@ public class CanvasController extends Canvas implements ActionListener,MouseList
             g.drawString(aux.getName(), aux.X(), aux.Y());
             aux.draw(drawer);
             aux = aux.getSigV();
+        }
+       
+    }
+    
+    public void drawOrder(Vertex current,Vertex next,float time){
+       
+         //f(x) = mx+b;
+        float m1 = next.Y()-current.Y();
+        float m2 = next.X()-current.X();
+        float m = m1/m2;
+        float b = current.Y()-m*current.X();
+        System.out.println("m="+m);
+        System.out.println("B="+b);
+        
+        
+        int y = 0;
+        int x = current.X();
+        System.out.println("F(x)="+m+"*"+x+"+"+b);
+        
+        float result = 0;
+        while (result != next.Y()) {            
+            result = m*x+b;
+            y = (int) result;
+            System.out.println(y);
+            Graphics g = this.getGraphics();
+            paint(g);
+            g.setColor(Color.ORANGE);
+            g.fillRect(x, y, 10, 10);
+            
+            try {              
+                Thread.sleep(90);
+            } catch (InterruptedException ex) {
+                System.err.println("erorr");
+            }
+            x++;
         }
         
     }
