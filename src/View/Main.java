@@ -203,7 +203,7 @@ public class Main extends javax.swing.JFrame {
         if(aux == null){
             JOptionPane.showMessageDialog(this, "No hay pedidos");
         }else 
-            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f );
+            this.singleton.getGraphMethods().shortRouteByTime(aux.getSender(), aux.getReceiver(), "",0.0f );
     }//GEN-LAST:event_SendOrder
 
     public static void main(String args[]) {

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Grafo;
 
 import java.awt.Color;
@@ -14,75 +13,51 @@ import java.util.Date;
 
 /**
  *
- * @author DanielR
+ * @author binns
  */
 public class Arc {
-    
-    private final Color  COLOR = Color.BLACK;
-    
-    private Arc sigA;
-    private Arc antA;
-    private Vertex destination;
-    
-   
-    private float maxWeight;
+
+    public Arc sigA;
+    public Arc antA;
+    public Vertex destino;
+    private final Color COLOR = Color.BLACK;
+
+    private float MaxWeight;
+    private float MaxVelocity;
     private float distance;
     private float time;
-    private float maxVelocity;
 
-    public Arc(float maxWeight, float distance, float maxVelocity, float time){
-        this.maxWeight = maxWeight;
+    public Arc(float MaxWeight, float MaxVelocity, float distance, float time) {
+        this.MaxWeight = MaxWeight;
+        this.MaxVelocity = MaxVelocity;
         this.distance = distance;
-        this.maxVelocity = maxVelocity;
         this.time = time;
     }
 
-    /**
-     * Draw line from origin vertex to destination vertex
-     * @param g2d Canvas graphics
-     * @param origin Origin vertex
-     */
-    public void draw(Graphics2D g2d, Vertex origin){
+    public void draw(Graphics2D g2d, Vertex origin) {
         g2d.setColor(COLOR);
-        
+
         Dimension2D dimension = origin.getDimension2D();
-        int width = (int) dimension.getWidth()/2;
-        int height = (int) dimension.getHeight()/2;
-        
-        g2d.drawLine(origin.X()+width, origin.Y()+height, this.destination.X()+width, this.destination.Y()+height);
-        
-    }
-    
-    public Arc getSigA() {
-        return sigA;
-    }
+        int width = (int) dimension.getWidth() / 2;
+        int height = (int) dimension.getHeight() / 2;
 
-    public void setSigA(Arc sigA) {
-        this.sigA = sigA;
-    }
-
-    public Arc getAntA() {
-        return antA;
-    }
-
-    public void setAntA(Arc antA) {
-        this.antA = antA;
-    }
-
-    public Vertex getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Vertex destination) {
-        this.destination = destination;
+        g2d.drawLine(origin.X() + width, origin.Y() + height, this.destino.X() + width, this.destino.Y() + height);
     }
 
     public float getMaxWeight() {
-        return maxWeight;
+        return MaxWeight;
     }
 
-    public void setMaxWeight(float maxWeight) {
-        this.maxWeight = maxWeight;
+    public void setMaxWeight(float MaxWeight) {
+        this.MaxWeight = MaxWeight;
+    }
+
+    public float getMaxVelocity() {
+        return MaxVelocity;
+    }
+
+    public void setMaxVelocity(float MaxVelocity) {
+        this.MaxVelocity = MaxVelocity;
     }
 
     public float getDistance() {
@@ -101,13 +76,4 @@ public class Arc {
         this.time = time;
     }
 
-    public float getMaxVelocity() {
-        return maxVelocity;
-    }
-
-    public void setMaxVelocity(float maxVelocity) {
-        this.maxVelocity = maxVelocity;
-    }
-    
-    
 }
