@@ -404,13 +404,15 @@ public class SettingsGraph extends javax.swing.JFrame {
     }//GEN-LAST:event_comboDesDeleteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if ((Float) newPeso.getValue() <= 0 || (Float) NewVelocity.getValue() <= 0) {
+        if ((Integer) newPeso.getValue() <= 0 || (Float) NewVelocity.getValue() <= 0) {
             JOptionPane.showMessageDialog(null, "El nuevo peso o la nueva velocidad tiene que ser mayores a 0");
         } else {
             Vertex origin = singleton.getGraphMethods().search(comoModOrigin.getSelectedItem().toString());
             Vertex destination = singleton.getGraphMethods().search(ComboDestMod.getSelectedItem().toString());
             if (origin != null && destination != null) {
-                if (singleton.getGraphMethods().Modify(origin, destination, (Float) newPeso.getValue(), (Float) NewVelocity.getValue())) {
+                int newWeight = (int) newPeso.getValue();
+                int velocity = (int) NewVelocity.getValue();
+                if (singleton.getGraphMethods().Modify(origin, destination, newWeight, velocity)) {
                     loadCombo();
                     JOptionPane.showMessageDialog(null, "Se modifico con exito");
                 } else {

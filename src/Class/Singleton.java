@@ -45,7 +45,7 @@ public class Singleton {
       this.map.add("Florencia", "Pital", 30, 60, 70, 4F);
       this.map.add("Ciudad Quesada", "Aguas Zarcas", 20, 24, 40, 2.5F);
       this.map.add("Aguas Zarcas", "Pital", 20, 20, 70, 1.5F);
-      this.map.add("Aguas Zarcas", "Venecia", 24, 24, 65, 2.5F);
+      this.map.add("Venecia", "Aguas Zarcas", 24, 24, 65, 2.5F);
       
       
       this.users.put(new User(1, "Daniel", Licenses.B1));
