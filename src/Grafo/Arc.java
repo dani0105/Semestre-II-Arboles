@@ -19,9 +19,9 @@ public class Arc {
     
     private final Color  COLOR = Color.BLACK;
     
-    private Arc sigA;
-    private Arc antA;
-    private Vertex destination;
+    public Arc sigA;
+    public Arc antA;
+    public Vertex destination;
     
     private boolean isPath;
    
@@ -69,12 +69,8 @@ public class Arc {
         this.sigA = sigA;
     }
 
-        Dimension2D dimension = origin.getDimension2D();
-        int width = (int) dimension.getWidth() / 2;
-        int height = (int) dimension.getHeight() / 2;
-
-        g2d.drawLine(origin.X() + width, origin.Y() + height, this.destino.X() + width, this.destino.Y() + height);
-    }
+  
+    
 
     public float getMaxWeight() {
         return MaxWeight;

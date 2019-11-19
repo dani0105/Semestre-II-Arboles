@@ -77,7 +77,6 @@ public class GraphMethods {
             Arc aux = origin.getSigA();
             while (aux.sigA != null) {
                 if (aux.destino== destination) {
-                    
                     return aux;
                 }
                 aux = aux.sigA;
