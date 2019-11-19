@@ -160,8 +160,10 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="comoModOrigin" pref="213" max="32767" attributes="0"/>
                           <Component id="ComboDestMod" max="32767" attributes="0"/>
-                          <Component id="NewVelocity" alignment="1" pref="118" max="32767" attributes="0"/>
-                          <Component id="newPeso" alignment="1" max="32767" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="NewVelocity" alignment="1" pref="118" max="32767" attributes="0"/>
+                              <Component id="newPeso" alignment="1" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
