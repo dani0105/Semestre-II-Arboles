@@ -53,15 +53,15 @@ public class Vertex {
      * This methods draw the vertex in canvas.
      * @param g2d Canvas graphics
      */
-    public void draw(Graphics2D g2d) {
+    public void draw(Graphics2D g2d){
         g2d.setColor(this.COLOR);
-        g2d.fillOval(this.x, this.y, (int) this.DIMENSIONS.getWidth(), (int) this.DIMENSIONS.getHeight());
-
+        g2d.fillOval(this.x, this.y, (int) this.DIMENSIONS.getWidth(), (int) this.DIMENSIONS.getHeight());  
+        
         Arc aux = this.sigA;
-        while (aux != null) {
-
+        while(aux != null){
+            
             aux.draw(g2d, this);
-            aux = aux.sigA;
+            aux = aux.getSigA();
         }
     }
 

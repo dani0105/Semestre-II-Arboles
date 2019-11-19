@@ -55,13 +55,22 @@ public class GraphMethods {
             if ((origin != null) && (destination != null)) {
                 if (search(origin, destination) == null) {
                     Arc newArc = new Arc(heavyvehicles, distance, maxVelocity, time);
-                    newArc.destino = destination;
+                    newArc.setDestination(destination);
                     if (origin.getSigA() == null) {
                         origin.setSigA(newArc);
                     } else {
-                        newArc.sigA=origin.getSigA();
-                        origin.getSigA().antA = newArc;
+                        newArc.setSigA(origin.getSigA());
+                        origin.getSigA().setAntA(newArc);
                         origin.setSigA(newArc);
+                    }
+                    Arc reverse = new Arc(heavyvehicles, distance, maxVelocity, time);
+                    reverse.setDestination(origin);
+                    if (destination.getSigA() == null) {
+                        destination.setSigA(reverse);
+                    } else {
+                        reverse.setSigA(destination.getSigA());
+                        destination.getSigA().setAntA(reverse);
+                        destination.setSigA(reverse);
                     }
                     return true;
                 }
@@ -69,9 +78,8 @@ public class GraphMethods {
             }
             return false;
         }
-        
     }
-
+    
     public Arc search(Vertex origin, Vertex destination) {
         if (graph != null && origin.getSigA() != null) {
             Arc aux = origin.getSigA();
@@ -79,7 +87,7 @@ public class GraphMethods {
                 if (aux.destino== destination) {
                     return aux;
                 }
-                aux = aux.sigA;
+                aux = aux.getSigA();
             }
         }
         return null;
@@ -91,23 +99,35 @@ public class GraphMethods {
         } else {
             Arc auxArc = search(origin, destination);
             if (auxArc != null) {
-                if(auxArc == origin.getSigA()){
-                    origin.setSigA(auxArc.sigA);
-                    if(auxArc.sigA != null){
-                        auxArc.sigA.antA = null;
+                Arc auxA = search(destination, origin);
+                if (auxArc == origin.getSigA()) {
+                    origin.setSigA(auxArc.getSigA());
+                    if (origin.getSigA() != null) {
+                        auxArc.getSigA().setAntA(null);
+                    }
+                } else {
+                    auxArc.getAntA().setSigA(auxArc.getSigA());
+                    if (auxArc.getSigA() != null) {
+                        auxArc.getSigA().setAntA(auxArc.getAntA());
+                    }
+                }
+                if (auxA == destination.getSigA()) {
+                    destination.setSigA(auxA.getSigA());
+                    if (destination.getSigA() != null) {
+                        auxA.getSigA().setAntA(null);
                     }
                     return true;
                 }
-                auxArc.antA.sigA = auxArc.sigA;
-                if(auxArc.sigA!=null){
-                    auxArc.sigA.antA = auxArc.antA;
+                auxA.getAntA().setSigA(auxA.getSigA());
+                if(auxA.getSigA() != null){
+                    auxA.getSigA().setAntA(auxA.getAntA());
                 }
                 return true;
             }
             return false;
         }
     }
-
+    
     public boolean delete(Vertex vertex){
         if(graph == null){
             return false;
@@ -116,10 +136,10 @@ public class GraphMethods {
             while(auxV != null){
                 Arc auxA = auxV.getSigA();
                 while(auxA != null){
-                    if(auxA.destino == vertex){
+                    if(auxA.getDestination() == vertex){
                         delete(auxV, vertex);
                     }
-                    auxA = auxA.sigA;
+                    auxA = auxA.getSigA();
                 }
                 auxV = auxV.getSigV();
             }
@@ -150,10 +170,11 @@ public class GraphMethods {
     public boolean Modify(Vertex origin,Vertex destiny, float heavy, float maxVelocity){
         Arc auxA = search(origin, destiny);
         if(auxA != null){
-      
+            Arc aux = search(destiny, origin);
             auxA.setMaxWeight(heavy);
             auxA.setMaxVelocity(maxVelocity);
-
+            aux.setMaxWeight(heavy);
+            aux.setMaxVelocity(maxVelocity);
             return true;
         }
         return false;
@@ -166,16 +187,15 @@ public class GraphMethods {
             vertex.setBrand(true);
             Arc auxA = vertex.getSigA();
             while (auxA != null) {
-                
                 listModel.addElement("Origen: " + vertex.getName());
-                listModel.addElement("Destino: " + auxA.destino.getName());
+                listModel.addElement("Destino: " + auxA.getDestination().getName());
                 listModel.addElement("Peso maximo " + auxA.getMaxWeight() + " de toneladas");
                 listModel.addElement("Velocidad maxima: " + auxA.getMaxVelocity());
                 listModel.addElement("Distancia: " + auxA.getDistance());
                 listModel.addElement("Tiempo de traslado en horas: " + auxA.getTime());
                 listModel.addElement("===================================================");
-                depth(auxA.destino, listModel);
-                auxA = auxA.sigA;
+                depth(auxA.getDestination(), listModel);
+                auxA = auxA.getSigA();
             }
         }
     }
@@ -190,13 +210,13 @@ public class GraphMethods {
                 Arc auxA = aux.getSigA();
                 while (auxA != null) {
                     listModel.addElement("Origen: " + aux.getName());
-                    listModel.addElement("Destino: " + auxA.destino.getName());
+                    listModel.addElement("Destino: " + auxA.getDestination().getName());
                     listModel.addElement("Peso maximo " + auxA.getMaxWeight() + " de toneladas");
                     listModel.addElement("Velocidad maxima: " + auxA.getMaxVelocity());
                     listModel.addElement("Distancia: " + auxA.getDistance());
                     listModel.addElement("Tiempo de traslado en horas: " + auxA.getTime());
                     listModel.addElement("===================================================");
-                    auxA = auxA.sigA;
+                    auxA = auxA.getSigA();
                 }
                 aux = aux.getSigV();
             }
@@ -224,8 +244,8 @@ public class GraphMethods {
         origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
-            shortRouteByTime(auxA.destino, destiny, rut +", "+ origin.getName(), time + auxA.getTime());
-            auxA = auxA.sigA;
+            shortRouteByDistance(auxA.getDestination(), destiny, rut +", "+ origin.getName(), time + auxA.getTime());
+            auxA.setSigA(auxA);
         }
         origin.setBrand(false);
 
@@ -250,14 +270,14 @@ public class GraphMethods {
                 routC = rut + destiny.getName();
                 min = dist;
                 totalTime += origin.getSigA().getTime();
-            }
+            }           
             return;
         }
         origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
-            shortRouteByDistance(auxA.destino, destiny, rut + origin.getName(), dist + auxA.getDistance());
-            auxA = auxA.sigA;
+            shortRouteByDistance(auxA.getDestination(), destiny, rut +", "+ origin.getName(), dist + auxA.getDistance());
+            auxA.setSigA(auxA);
         }
         origin.setBrand(false);
     }
