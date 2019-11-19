@@ -114,5 +114,13 @@ public class Arc {
         this.maxVelocity = maxVelocity;
     }
     
+    public void setAntA(Arc arco){
+        this.antA = arco;
+    }
+    
+    public Arc getAntA(){
+        return this.antA ;
+    }
+    
     
 }

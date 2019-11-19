@@ -72,4 +72,12 @@ public class User {
     public Licenses getLicense(){
         return this.license;
     }
+    
+    /**
+     * Set type user license.
+     * @param license new user license.
+     */
+    public void setLicense(Licenses license){
+        this.license = license;
+    }
 }

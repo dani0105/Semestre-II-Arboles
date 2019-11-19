@@ -50,9 +50,11 @@ public class Singleton {
       
       this.users.put(new User(1, "Daniel", Licenses.B1));
       this.users.put(new User(14, "Andres", Licenses.B2));
+      this.users.put(new User(28, "Andres", Licenses.B2));
       this.users.put(new User(3, "House", Licenses.B3));
       this.users.put(new User(4, "Sebastian", Licenses.B3));
       this.users.put(new User(5, "Ismael", Licenses.B3));
+      
      
     }
     

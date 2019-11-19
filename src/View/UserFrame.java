@@ -63,7 +63,7 @@ public class UserFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         jLabel1.setText("Ingrese su nombre:");
@@ -128,6 +128,11 @@ public class UserFrame extends javax.swing.JFrame {
         jLabel4.setText("Seleccione al usuario:");
 
         jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUser(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,6 +172,11 @@ public class UserFrame extends javax.swing.JFrame {
         jLabel6.setText("Seleccione la licencia:");
 
         jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyUser(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -309,6 +319,45 @@ public class UserFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void removeUser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUser
+      
+        String[] array = comboDeleteUser.getSelectedItem().toString().split(" ");
+        String name = array[8];
+        name = name.replace(",", "");
+        if(this.singleton.getUsers().remove(Integer.parseInt(name))){
+            JOptionPane.showMessageDialog(this, "Eliminado");
+            this.dispose();
+        }else
+            JOptionPane.showMessageDialog(this, "Error");
+    }//GEN-LAST:event_removeUser
+
+    private void modifyUser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyUser
+        String[] array = comboModUser.getSelectedItem().toString().split(" ");
+        String name = array[8];
+        name = name.replace(",", "");
+        User user =  this.singleton.getUsers().get(Integer.parseInt(name));
+        System.out.println(user.getName());
+        switch(comboModLicenses.getSelectedItem().toString()){
+            case "B1":
+                user.setLicense(Licenses.B1);
+                break;
+             case "B2":
+                user.setLicense(Licenses.B2);
+                break;
+             case "B3":
+                 user.setLicense(Licenses.B3);
+                break;
+             case "B4":
+                user.setLicense(Licenses.B4);
+                break;
+             default:
+                 System.out.println("No match");
+        } 
+        JOptionPane.showMessageDialog(this, "Guardado");
+        this.dispose();
+       
+    }//GEN-LAST:event_modifyUser
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboAddLicense;

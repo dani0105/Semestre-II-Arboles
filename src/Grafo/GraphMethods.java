@@ -84,7 +84,7 @@ public class GraphMethods {
         if (graph != null && origin.getSigA() != null) {
             Arc aux = origin.getSigA();
             while (aux.sigA != null) {
-                if (aux.destino== destination) {
+                if (aux.destination== destination) {
                     return aux;
                 }
                 aux = aux.getSigA();
