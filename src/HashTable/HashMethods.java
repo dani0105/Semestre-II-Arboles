@@ -149,5 +149,26 @@ public class HashMethods {
         }
         
     }
-
+    
+    public boolean remove(int id){
+        int key = this.hash(id);
+        if(this.table[key] == null){
+            return false;
+        }
+        if(this.table[key].getId() == id){
+            this.table[key] = this.table[key].Next();
+            return true;
+        }
+        for(User aux = this.table[key]; aux != null; aux = aux.Next()){
+            if(aux.Next() != null){
+                if(aux.Next().getId() == id){
+                    aux.Next(aux.Next().Next());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+  
 }
