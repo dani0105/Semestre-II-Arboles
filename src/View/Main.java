@@ -206,26 +206,28 @@ public class Main extends javax.swing.JFrame {
         if(aux == null){
             JOptionPane.showMessageDialog(this, "No hay pedidos");
         }
-            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f,null);
-        System.out.println(this.singleton.getGraphMethods().routC);
-        System.out.println("Ruta");
-            /*
-        String ruta[] = prueba.split(",");
         
-        for(int i = 0; i< ruta.length-1 ; ++i){
+        this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f,null);
+        
+          
+        String ruta[] = this.singleton.getGraphMethods().routC.split(",");
+        
+        for(int i = 1; i< ruta.length-1 ; ++i){
            Vertex current = this.singleton.getGraphMethods().search(ruta[i]);
             
            System.out.println("\nCurrent: "+current.getName());
            Vertex next = this.singleton.getGraphMethods().search(ruta[i+1]);
               System.out.println("Next: "+next.getName());
-           /*
+          
            if(current == null || next == null){
                continue;
            }
               
            this.canvas.drawOrder(current, next,1.3F);
         }
-            */
+        
+        this.singleton.getTreeMethods().Delete(aux, aux.getId());
+            
     }//GEN-LAST:event_SendOrder
 
     public static void main(String args[]) {
