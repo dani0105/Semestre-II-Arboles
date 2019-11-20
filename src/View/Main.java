@@ -206,8 +206,9 @@ public class Main extends javax.swing.JFrame {
         if(aux == null){
             JOptionPane.showMessageDialog(this, "No hay pedidos");
         }
-            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f,null);
         System.out.println(this.singleton.getGraphMethods().routC);
+        System.out.println("Ruta");
             /*
         String ruta[] = prueba.split(",");
         

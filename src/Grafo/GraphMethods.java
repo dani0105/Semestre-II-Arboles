@@ -243,6 +243,7 @@ public class GraphMethods {
             } 
             return;
         } 
+        System.out.println("Ciclo");
         origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
