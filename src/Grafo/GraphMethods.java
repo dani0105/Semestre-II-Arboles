@@ -11,7 +11,7 @@ public class GraphMethods {
 
     public Vertex graph;
 
-    private String routC = "";
+    public String routC = "";
     private float min = 0;
     private float totalTime = 0;
     private float totalDistance = 0;

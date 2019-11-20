@@ -201,11 +201,14 @@ public class Main extends javax.swing.JFrame {
 
     private void SendOrder(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendOrder
         Node aux = this.singleton.getTreeMethods().root;
+        
         String prueba = "Santa Clara,Florencia,Ciudad Quesada,Aguas Zarcas";
-        if(aux != null){
+        if(aux == null){
             JOptionPane.showMessageDialog(this, "No hay pedidos");
         }
-            //this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+            this.singleton.getGraphMethods().shortRouteByDistance(aux.getSender(), aux.getReceiver(), "",0.0f);
+        System.out.println(this.singleton.getGraphMethods().routC);
+            /*
         String ruta[] = prueba.split(",");
         
         for(int i = 0; i< ruta.length-1 ; ++i){
@@ -217,10 +220,11 @@ public class Main extends javax.swing.JFrame {
            /*
            if(current == null || next == null){
                continue;
-           }*/
+           }
               
            this.canvas.drawOrder(current, next,1.3F);
         }
+            */
     }//GEN-LAST:event_SendOrder
 
     public static void main(String args[]) {
