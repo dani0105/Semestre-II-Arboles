@@ -73,15 +73,19 @@ public class GraphMethods {
     }
     
     public Arc search(Vertex origin, Vertex destination) {
-        if (graph != null && origin.getSigA() != null) {
+        if (origin.getSigA() != null) {
             Arc aux = origin.getSigA();
+           
             while (aux.getSigA() != null) {
-                if (aux.getDestination()== destination) {
+                if (aux.getDestination() == destination) {
+                    System.out.println("Entro");
                     return aux;
                 }
                 aux = aux.getSigA();
             }
+               
         }
+     
         return null;
     }
 
@@ -150,11 +154,8 @@ public class GraphMethods {
     public boolean Modify(Vertex origin,Vertex destiny, float heavy, float maxVelocity){
         Arc auxA = search(origin, destiny);
         if(auxA != null){
-            Arc aux = search(destiny, origin);
             auxA.setMaxWeight(heavy);
             auxA.setMaxVelocity(maxVelocity);
-            aux.setMaxWeight(heavy);
-            aux.setMaxVelocity(maxVelocity);
             return true;
         }
         return false;
@@ -213,6 +214,7 @@ public class GraphMethods {
 
             if ((routC.equals("")) || (min > time)) {
                 routC = rut + "," + destiny.getName();
+                min = time;
             }
             return;
         }
@@ -240,6 +242,7 @@ public class GraphMethods {
         if (origin == destiny) {
             if ((routC.equals("")) || (min > dist)) {
                 routC = rut + ","+ destiny.getName();
+                min = dist;
             } 
             return;
         } 
@@ -248,7 +251,7 @@ public class GraphMethods {
         Arc auxA = origin.getSigA();
         while (auxA != null) {
             shortRouteByDistance(auxA.getDestination(), destiny, rut +","+ origin.getName(), dist + auxA.getDistance(), auxA);
-            auxA.setSigA(auxA);
+           auxA = auxA.getSigA();
         }
         origin.setBrand(false);
     }

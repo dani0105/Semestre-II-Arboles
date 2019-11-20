@@ -69,6 +69,7 @@ public class SettingsGraph extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,7 +129,7 @@ public class SettingsGraph extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(46, 46, 46)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jButton9)
                 .addContainerGap())
         );
@@ -208,7 +209,7 @@ public class SettingsGraph extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NewVelocity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26)
                 .addComponent(jButton8)
@@ -265,7 +266,7 @@ public class SettingsGraph extends javax.swing.JFrame {
                 .addComponent(ComboCityDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jButton10)
                 .addContainerGap())
         );
@@ -335,7 +336,7 @@ public class SettingsGraph extends javax.swing.JFrame {
                     .addComponent(comboDesDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addComponent(jButton11)
                 .addGap(14, 14, 14))
         );
@@ -359,30 +360,44 @@ public class SettingsGraph extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("jButton7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(jButton5)
-                .addGap(66, 66, 66)
-                .addComponent(jButton6)
-                .addGap(27, 182, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jButton5)
+                        .addGap(66, 66, 66)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addComponent(jButton7)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton5)
+                        .addComponent(jButton6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Informacion", jPanel5);
@@ -432,7 +447,7 @@ public class SettingsGraph extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        listModel.clear();
-       singleton.getGraphMethods().depth(singleton.getGraphMethods().search("Florencia"), listModel);
+       singleton.getGraphMethods().depth(singleton.getGraphMethods().search("Pital"), listModel);
        jList1.setModel(listModel);
        singleton.getGraphMethods().CleanBrand();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -464,13 +479,13 @@ public class SettingsGraph extends javax.swing.JFrame {
     }//GEN-LAST:event_comboDesDeleteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if ((Float) newPeso.getValue() <= 0 || (Float) NewVelocity.getValue() <= 0) {
+        if ((int) newPeso.getValue() <= 0 || (int) NewVelocity.getValue() <= 0) {
             JOptionPane.showMessageDialog(null, "El nuevo peso o la nueva velocidad tiene que ser mayores a 0");
         } else {
             Vertex origin = singleton.getGraphMethods().search(comoModOrigin.getSelectedItem().toString());
             Vertex destination = singleton.getGraphMethods().search(ComboDestMod.getSelectedItem().toString());
             if (origin != null && destination != null) {
-                if (singleton.getGraphMethods().Modify(origin, destination, (Float) newPeso.getValue(), (Float) NewVelocity.getValue())) {
+                if (singleton.getGraphMethods().Modify(origin, destination,(int)  newPeso.getValue(),(int)  NewVelocity.getValue())) {
                     loadCombo();
                     JOptionPane.showMessageDialog(null, "Se modifico con exito");
                 } else {
@@ -497,6 +512,13 @@ public class SettingsGraph extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+         listModel.clear();
+         singleton.getGraphMethods().shortRouteByDistance(singleton.getGraphMethods().search("Florencia"),singleton.getGraphMethods().search("Venecia"), "", 0.0f, null);
+         System.out.println(   singleton.getGraphMethods().routC);
+         jList1.setModel(listModel);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -549,6 +571,7 @@ public class SettingsGraph extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
