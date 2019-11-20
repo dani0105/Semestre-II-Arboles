@@ -12,9 +12,9 @@ public class GraphMethods {
     public Vertex graph;
 
     public String routC = "";
-    private float min = 0;
-    private float totalTime = 0;
-    private float totalDistance = 0;
+    public float min = 0;
+    public float totalTime = 0;
+    public float totalDistance = 0;
     public boolean exists;
 
     public boolean add(String name, int x, int y) {
@@ -205,30 +205,25 @@ public class GraphMethods {
 
 
      
-    public void shortRouteByTime(Vertex origin, Vertex destiny,String rut, float time) {
-         if ((origin == null) || (origin.isBrand())) {
+    public void shortRouteByTime(Vertex origin, Vertex destiny, String rut, float time, Arc aux) {
+        if ((origin == null) || (origin.isBrand()) ) {
             return;
         }
         if (origin == destiny) {
-            System.out.println("Ruta: " + rut + destiny.getName());
-            System.out.println("Con un tiempo de: " + time);
-            System.out.println("La distancia recorrida es de " + totalDistance);
 
             if ((routC.equals("")) || (min > time)) {
-                routC = rut + destiny.getName();
-                min = time;
-         
-            }  
+                routC = rut + "," + destiny.getName();
+            }
             return;
         }
         origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
-            shortRouteByTime(auxA.getDestination(), destiny, rut +", "+ origin.getName(), time + auxA.getTime());
+            shortRouteByTime(auxA.getDestination(), destiny, rut + "," + origin.getName(), time + auxA.getTime(), auxA);
             auxA = auxA.getSigA();
         }
         origin.setBrand(false);
-        exists = false;
+
         
     }
 
@@ -238,27 +233,20 @@ public class GraphMethods {
         }
     }
     
-    public void shortRouteByDistance(Vertex origin, Vertex destiny, String rut, float dist) {
+    public void shortRouteByDistance(Vertex origin, Vertex destiny, String rut, float dist, Arc aux) {
         if ((origin == null) || (origin.isBrand())) {
             return;
         }
         if (origin == destiny) {
-            System.out.println("Ruta: " + rut + destiny.getName());
-            System.out.println("Con una distancia de: " + dist);
-            System.out.println("El tiempo de traslado es de " + totalTime + " de horas");
-
             if ((routC.equals("")) || (min > dist)) {
-                routC = rut + destiny.getName();
-                min = dist;
-               
+                routC = rut + ","+ destiny.getName();
             } 
-            origin.setBrand(true);
             return;
-        }
+        } 
         origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
-            shortRouteByDistance(auxA.getDestination(), destiny, rut +", "+ origin.getName(), dist + auxA.getDistance());
+            shortRouteByDistance(auxA.getDestination(), destiny, rut +","+ origin.getName(), dist + auxA.getDistance(), auxA);
             auxA.setSigA(auxA);
         }
         origin.setBrand(false);

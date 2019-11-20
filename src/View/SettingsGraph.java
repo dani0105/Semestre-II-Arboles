@@ -69,7 +69,6 @@ public class SettingsGraph extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -360,13 +359,6 @@ public class SettingsGraph extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Ruta corta");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -380,9 +372,7 @@ public class SettingsGraph extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addGap(66, 66, 66)
                 .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jButton7)
-                .addGap(27, 27, 27))
+                .addGap(27, 182, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,8 +382,7 @@ public class SettingsGraph extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)))
+                    .addComponent(jButton6)))
         );
 
         jTabbedPane1.addTab("Informacion", jPanel5);
@@ -443,7 +432,7 @@ public class SettingsGraph extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        listModel.clear();
-       singleton.getGraphMethods().depth(singleton.getGraphMethods().search("Santa Clara"), listModel);
+       singleton.getGraphMethods().depth(singleton.getGraphMethods().search("Florencia"), listModel);
        jList1.setModel(listModel);
        singleton.getGraphMethods().CleanBrand();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -509,12 +498,6 @@ public class SettingsGraph extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        listModel.clear();
-        singleton.getGraphMethods().shortRouteByTime(singleton.getGraphMethods().search("Ciudad quesada"),singleton.getGraphMethods().search("Pital"),"", 0.0f);
-        jList1.setModel(listModel);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -566,7 +549,6 @@ public class SettingsGraph extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
