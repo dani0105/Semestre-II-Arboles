@@ -15,6 +15,7 @@ public class GraphMethods {
     private float min = 0;
     private float totalTime = 0;
     private float totalDistance = 0;
+    public boolean exists;
 
     public boolean add(String name, int x, int y) {
         if (search(name) == null) {
@@ -218,7 +219,6 @@ public class GraphMethods {
                 min = time;
          
             }  
-            origin.setBrand(true);
             return;
         }
         origin.setBrand(true);
@@ -227,7 +227,9 @@ public class GraphMethods {
             shortRouteByTime(auxA.getDestination(), destiny, rut +", "+ origin.getName(), time + auxA.getTime());
             auxA = auxA.getSigA();
         }
-        origin.setBrand(true);
+        origin.setBrand(false);
+        exists = false;
+        
     }
 
     public void printBands(){

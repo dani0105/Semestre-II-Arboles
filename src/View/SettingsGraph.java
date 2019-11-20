@@ -443,7 +443,7 @@ public class SettingsGraph extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        listModel.clear();
-       singleton.getGraphMethods().depth(singleton.getGraphMethods().search("Florencia"), listModel);
+       singleton.getGraphMethods().depth(singleton.getGraphMethods().search("Santa Clara"), listModel);
        jList1.setModel(listModel);
        singleton.getGraphMethods().CleanBrand();
     }//GEN-LAST:event_jButton5ActionPerformed
