@@ -17,11 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author DanielR
  */
-public class OrderFrame extends javax.swing.JFrame {
+public class OrderFrame extends javax.swing.JDialog{
 
     private Singleton singleton = Singleton.getInstance();
     private DefaultListModel listModel = new DefaultListModel();
-    public OrderFrame() {
+    public OrderFrame(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         print();
         loadGraphData();

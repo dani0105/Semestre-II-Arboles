@@ -185,7 +185,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_addArc
 
     private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
-        OrderFrame OF = new OrderFrame();
+        OrderFrame OF = new OrderFrame(null, true);
         OF.setVisible(true);
     }//GEN-LAST:event_btnAddOrderActionPerformed
 
@@ -195,7 +195,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        UserFrame UF = new UserFrame();
+        UserFrame UF = new UserFrame(null, true);
         UF.setVisible(true);
     }//GEN-LAST:event_btnAddUserActionPerformed
 

@@ -12,7 +12,7 @@ public class GraphMethods {
     public Vertex graph;
 
     private String routC = "";
-    private float min = 0;  
+    private float min = 0;
     private float totalTime = 0;
     private float totalDistance = 0;
 
@@ -30,8 +30,7 @@ public class GraphMethods {
         }
         return false;
     }
-    
-    
+
     public Vertex search(String name){
         if(this.graph == null)
             return null;
@@ -59,18 +58,10 @@ public class GraphMethods {
                     if (origin.getSigA() == null) {
                         origin.setSigA(newArc);
                     } else {
+                        
                         newArc.setSigA(origin.getSigA());
                         origin.getSigA().setAntA(newArc);
                         origin.setSigA(newArc);
-                    }
-                    Arc reverse = new Arc(heavyvehicles, distance, maxVelocity, time);
-                    reverse.setDestination(origin);
-                    if (destination.getSigA() == null) {
-                        destination.setSigA(reverse);
-                    } else {
-                        reverse.setSigA(destination.getSigA());
-                        destination.getSigA().setAntA(reverse);
-                        destination.setSigA(reverse);
                     }
                     return true;
                 }
@@ -83,8 +74,8 @@ public class GraphMethods {
     public Arc search(Vertex origin, Vertex destination) {
         if (graph != null && origin.getSigA() != null) {
             Arc aux = origin.getSigA();
-            while (aux.sigA != null) {
-                if (aux.destino== destination) {
+            while (aux.getSigA() != null) {
+                if (aux.getDestination()== destination) {
                     return aux;
                 }
                 aux = aux.getSigA();
@@ -99,35 +90,23 @@ public class GraphMethods {
         } else {
             Arc auxArc = search(origin, destination);
             if (auxArc != null) {
-                Arc auxA = search(destination, origin);
-                if (auxArc == origin.getSigA()) {
+                if (origin.getSigA() == auxArc) {
                     origin.setSigA(auxArc.getSigA());
                     if (origin.getSigA() != null) {
                         auxArc.getSigA().setAntA(null);
                     }
-                } else {
-                    auxArc.getAntA().setSigA(auxArc.getSigA());
-                    if (auxArc.getSigA() != null) {
-                        auxArc.getSigA().setAntA(auxArc.getAntA());
-                    }
-                }
-                if (auxA == destination.getSigA()) {
-                    destination.setSigA(auxA.getSigA());
-                    if (destination.getSigA() != null) {
-                        auxA.getSigA().setAntA(null);
-                    }
                     return true;
                 }
-                auxA.getAntA().setSigA(auxA.getSigA());
-                if(auxA.getSigA() != null){
-                    auxA.getSigA().setAntA(auxA.getAntA());
+                auxArc.getAntA().setSigA(auxArc.getSigA());
+                if (auxArc.getSigA() != null) {
+                    auxArc.getSigA().setAntA(auxArc.getAntA());
                 }
                 return true;
             }
             return false;
         }
     }
-    
+
     public boolean delete(Vertex vertex){
         if(graph == null){
             return false;
@@ -145,14 +124,14 @@ public class GraphMethods {
             }
             if(vertex == graph){
                 graph = vertex.getSigV();
-                if( vertex.getSigV() != null){
+                if( graph != null){
                      vertex.getSigV().setAntV(null);
                 }
                 return true;
             }
-            vertex.getAntV().setSigV(auxV.getSigV());
+            vertex.getAntV().setSigV(vertex.getSigV());
             if (vertex.getSigV() != null) {
-                vertex.getSigV().setAntV(auxV.getAntV());
+                vertex.getSigV().setAntV(vertex.getAntV());
             }
             return true;
         }
@@ -237,18 +216,18 @@ public class GraphMethods {
             if ((routC.equals("")) || (min > time)) {
                 routC = rut + destiny.getName();
                 min = time;
-                totalDistance += origin.getSigA().getDistance();
-            }           
+         
+            }  
+            origin.setBrand(true);
             return;
         }
         origin.setBrand(true);
         Arc auxA = origin.getSigA();
         while (auxA != null) {
-            shortRouteByDistance(auxA.getDestination(), destiny, rut +", "+ origin.getName(), time + auxA.getTime());
-            auxA.setSigA(auxA);
+            shortRouteByTime(auxA.getDestination(), destiny, rut +", "+ origin.getName(), time + auxA.getTime());
+            auxA = auxA.getSigA();
         }
-        origin.setBrand(false);
-
+        origin.setBrand(true);
     }
 
     public void printBands(){
@@ -269,8 +248,9 @@ public class GraphMethods {
             if ((routC.equals("")) || (min > dist)) {
                 routC = rut + destiny.getName();
                 min = dist;
-                totalTime += origin.getSigA().getTime();
-            }           
+               
+            } 
+            origin.setBrand(true);
             return;
         }
         origin.setBrand(true);

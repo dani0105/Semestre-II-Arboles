@@ -49,14 +49,16 @@ public class TreeMethods {
                                 aux.setIzq(node);
                                 return addVar = 3;
                             }
-                        } else if (itemWeight < 8) {
+                        }
+                        if (itemWeight < 8) {
                             if (user.getLicense().equals(B2)) {
                                 aux.setIzq(node);
                                 return addVar = 3;
                             }
-                        } else {
+                        }
+                        if (itemWeight >= 8) {
                             if (user.getLicense().equals(B3) || user.getLicense().equals(B4)) {
-                                aux.setIzq(node);
+                                aux.setDer(node);
                                 return addVar = 3;
                             }
                         }
@@ -71,12 +73,14 @@ public class TreeMethods {
                                 aux.setDer(node);
                                 return addVar = 3;
                             }
-                        } else if (itemWeight < 8) {
+                        } 
+                        if (itemWeight < 8) {
                             if (user.getLicense().equals(B2)) {
                                 aux.setDer(node);
                                 return addVar = 3;
                             }
-                        } else {
+                        } 
+                        if(itemWeight > 8){
                             if (user.getLicense().equals(B3) || user.getLicense().equals(B4)) {
                                 aux.setDer(node);
                                 return addVar = 3;
@@ -112,14 +116,16 @@ public class TreeMethods {
                             aux.setUser(user);
                             return modVar = 3;
                         }
-                    } else if (itemWeight < 8) {
+                    }
+                    if (itemWeight < 8) {
                         if (user.getLicense().equals(B2)) {
                             aux.setItemWeight(itemWeight);
                             aux.setReceiver(reciver);
                             aux.setUser(user);
                             return modVar = 3;
                         }
-                    } else {
+                    }
+                    if (itemWeight > 8) {
                         if (user.getLicense().equals(B3) || user.getLicense().equals(B4)) {
                             aux.setItemWeight(itemWeight);
                             aux.setReceiver(reciver);

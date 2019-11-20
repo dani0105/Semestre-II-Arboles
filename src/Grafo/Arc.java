@@ -20,9 +20,9 @@ public class Arc {
     
     private final Color  COLOR = Color.BLACK;
     
-    public Arc sigA;
-    public Arc antA;
-    public Vertex destination;
+    private Arc sigA;
+    private Arc antA;
+    private Vertex destination;
     
     private boolean isPath;
    
@@ -36,6 +36,14 @@ public class Arc {
         this.distance = distance;
         this.maxVelocity = maxVelocity;
         this.time = time;
+    }
+
+    public Arc getAntA() {
+        return antA;
+    }
+
+    public void setAntA(Arc antA) {
+        this.antA = antA;
     }
 
     /**

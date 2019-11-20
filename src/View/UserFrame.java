@@ -16,12 +16,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author DanielR
  */
-public class UserFrame extends javax.swing.JFrame {
+public class UserFrame extends javax.swing.JDialog {
 
     private Singleton singleton = Singleton.getInstance();
     private DefaultListModel listModel = new DefaultListModel();
 
-    public UserFrame() {
+    public UserFrame(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         loadComboLicenses();
         print();
@@ -46,24 +47,24 @@ public class UserFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        ComboAddLicense = new javax.swing.JComboBox<String>();
+        ComboAddLicense = new javax.swing.JComboBox<>();
         IDSPIN = new javax.swing.JSpinner();
         nameTXT = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        comboDeleteUser = new javax.swing.JComboBox<String>();
+        comboDeleteUser = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        comboModUser = new javax.swing.JComboBox<String>();
+        comboModUser = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        comboModLicenses = new javax.swing.JComboBox<String>();
+        comboModLicenses = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         jLabel1.setText("Ingrese su nombre:");
