@@ -76,7 +76,7 @@ public class GraphMethods {
         if (origin.getSigA() != null) {
             Arc aux = origin.getSigA();
            
-            while (aux.getSigA() != null) {
+            while (aux != null) {
                 if (aux.getDestination() == destination) {
                     System.out.println("Entro");
                     return aux;

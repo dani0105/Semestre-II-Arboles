@@ -20,6 +20,7 @@ public class TreeMethods {
     public Node root;
     private int addVar;
     private int modVar;
+    private Node found;
 
     public TreeMethods() {
       
@@ -230,6 +231,18 @@ public class TreeMethods {
             return true;
         }
         return false;
+    }
+    
+    public Node search(Node aux, Node auxNode){
+        if (aux == null) {
+            return found = null;
+        }
+        search(aux.getIzq(),auxNode);
+        if(aux == auxNode){
+           return found = auxNode; 
+        }
+        search(aux.getDer(),auxNode);
+        return found;
     }
 
     public void addComboID(Node aux, JComboBox combo) {
